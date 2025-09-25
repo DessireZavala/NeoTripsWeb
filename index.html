@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Trips Travel</title>
+        <link rel="icon" type="image/svg+xml" href="assets/neo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+         <div class="logo">
+                    <a>
+                        <img src="assets/NEOTRIPS.svg" alt="Logo Neo Trips" class="logo-img">
+                    </a>
+                </div> 
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#destinations">Destinos</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Descubre tu próxima aventura</h1>
+            <p>Desde playas vírgenes hasta ciudades vibrantes, creamos viajes inolvidables diseñados solo para ti</p>
+            <a href="#contact" class="btn">Comienza tu viaje</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">
+                Soluciones de viaje integrales diseñadas para hacer que tu viaje sea fluido e inolvidable
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Paquetes Personalizados</h3>
+                    <p class="service-subtitle">Experiencias hechas a tu medida</p>
+                    <p class="service-description">
+                        Nuestros asesores de viaje trabajan contigo para comprender tus preferencias, intereses y presupuesto. 
+                        Creamos itinerarios totalmente personalizados que reflejan tu estilo único de viaje.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏨</div>
+                    <h3>Viajes de Lujo</h3>
+                    <p class="service-subtitle">Vive el mundo con la máxima comodidad y estilo</p>
+                    <p class="service-description">
+                        Disfruta de alojamientos de primera, experiencias exclusivas y un servicio personalizado 
+                        que transforma tu viaje en una escapada de lujo.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🧳</div>
+                    <h3>Asesoría de Viaje Profesional</h3>
+                    <p class="service-subtitle">Orientación experta de profesionales del sector</p>
+                    <p class="service-description">
+                        Aprovecha nuestro amplio conocimiento y conexiones en la industria de viajes para 
+                        garantizar que cada aspecto de tu viaje esté perfectamente planeado y ejecutado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="destinations" id="destinations">
+        <div class="container">
+            <h2 class="section-title">Explora Destinos</h2>
+            <p class="section-subtitle">
+                Descubre destinos increíbles en tres categorías únicas. Cada carrusel muestra diferentes lugares dentro de esa categoría.
+            </p>
+            
+            <div class="categories">
+                <!-- Beach Destinations -->
+                <div class="category">
+                    <h3>Destinos de Playa</h3>
+                    <div class="carousel" id="beach-carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="assets/Cancún.jpeg" alt="Cancun" class="carousel-img">
+                                <h4>Cancún</h4>
+                                <p>México</p>
+                                <p>Aguas turquesa, arena blanca y vida nocturna vibrante</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/PuertoV.jpeg" alt="Puerto Vallarta" class="carousel-img">
+                                <h4>Puerto Vallarta</h4>
+                                <p>México</p>
+                                <p>Playas doradas y encanto colonial junto al Pacífico</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/los_cabos.jpeg" alt="Los Cabos" class="carousel-img">
+                                <h4>Los Cabos</h4>
+                                <p>Mexico</p>
+                                <p>Desierto y mar unidos en paisajes espectaculares</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev" data-carousel="beach" data-direction="-1">&#10094;</button>
+                        <button class="carousel-btn next" data-carousel="beach" data-direction="1">&#10095;</button>
+                    </div>
+                    
+                </div>
+                
+                <!-- Cabins & Nature Retreats -->
+                <div class="category">
+                    <h3>Cabañas y Retiros en la Naturaleza</h3>
+                    <div class="carousel" id="nature-carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="assets/arteaga.jpeg" alt="Arteaga" class="carousel-img">
+                                <h4>Arteaga</h4>
+                                <p>Coahuila, México</p>
+                                <p>Paisajes nevados y cabañas acogedoras en la sierra</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/valle.jpeg" alt="Valle de Bravo" class="carousel-img">
+                                <h4>Valle de Bravo</h4>
+                                <p>Estado de México</p>
+                                <p>Bosques verdes y un lago ideal para desconectar</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/valquirico.jpeg" alt="Valquirico" class="carousel-img">
+                                <h4>Valquirico</h4>
+                                <p>Estado de Tlaxcala, Mexico</p>
+                                <p>Pueblo pintoresco con esencia medieval en México</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev" data-carousel="nature" data-direction="-1">&#10094;</button>
+                        <button class="carousel-btn next" data-carousel="nature" data-direction="1">&#10095;</button>
+                    </div>
+                    
+                </div>
+                
+                <!-- City Trips -->
+                <div class="category">
+                    <h3>Escapadas Urbanas</h3>
+                    <div class="carousel" id="city-carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="assets/oaxaca.jpeg" alt="Oaxaca" class="carousel-img">
+                                <h4>Oaxaca</h4>
+                                <p>Mexico</p>
+                                <p>Tradición, cultura y sabores únicos en cada rincón</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/queretaro.jpeg" alt="Querétaro" class="carousel-img">
+                                <h4>Querétaro</h4>
+                                <p>Mexico</p>
+                                <p>Historia colonial y modernidad en perfecta armonía</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/guanajuato.jpeg" alt="Guanajuato" class="carousel-img">
+                                <h4>Guanajuato</h4>
+                                <p>Mexico</p>
+                                <p>Calles coloridas y leyendas en una ciudad mágica</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev" data-carousel="city" data-direction="-1">&#10094;</button>
+                        <button class="carousel-btn next" data-carousel="city" data-direction="1">&#10095;</button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <p class="carousel-instruction">
+                Usa los botones de flecha para explorar diferentes destinos dentro de cada categoría
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Ponte en Contacto</h2>
+            <p class="section-subtitle">
+                ¿Listo para comenzar a planear tus vacaciones soñadas? ¡Contáctanos hoy y hagámoslo realidad!
+            </p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-details">
+                        <p><strong>Email</strong><br>neotrips@gmailcom</p>
+                        <p><strong>Teléfono</strong><br>+52 498 110 7509</p>
+                        <p><strong>Dirección</strong><br>Calle Mar Mediterráneo No 46<br> Col. Paraiso del Nazas. Torreón Coahuila</p>
+                    </div>
+                    
+                    <div class="social">
+                        <h3>Síguenos</h3>
+                        <p>Conéctate con nosotros en redes sociales para inspiración y novedades de viaje</p>
+                            <div class="social-links">
+                                <a href="https://facebook.com" target="_blank" class="social-link">
+                                    <img src="assets/face.svg" alt="Facebook" width="50" height="50">
+                                </a>
+                                <a href="https://instagram.com" target="_blank" class="social-link">
+                                    <img src="assets/in.png" alt="Instagram" width="50" height="50">
+                                </a>
+                            </div>
+
+                        <!-- Nuevo bloque de opinión -->
+                        <div class="feedback">
+                            <p>¿Tienes alguna opinión o sugerencia? ¡Compártela con nosotros aquí!</p>
+                            <a href="https://forms.gle/tWa3q82DgMMBz8cy9" target="_blank" class="btn">Enviar Opinión</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq">
+                        <h3>Preguntas Frecuentes</h3>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Con cuánta anticipación debo reservar mi viaje?</button>
+                            <div class="faq-answer">
+                                <p>Recomendamos reservar con 3 a 6 meses de antelación para asegurar la disponibilidad y mejores tarifas, especialmente para viajes en temporada alta o a destinos muy populares. Si tu viaje es en temporada baja o es de último minuto, contáctanos y haremos todo lo posible por ayudarte.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Qué métodos de pago aceptan?</button>
+                            <div class="faq-answer">
+                                <p>Aceptamos diversas formas de pago para tu comodidad, incluyendo tarjetas de crédito (Visa, Mastercard, American Express), transferencias bancarias y depósitos en efectivo.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Cuál es su política de cancelación?</button>
+                            <div class="faq-answer">
+                                <p>Nuestra política de cancelación depende del proveedor de servicios (aerolínea, hotel, tour). Te proporcionaremos todos los detalles de la política específica al momento de la reserva. Ofrecemos asistencia en el proceso de cancelación y reembolsos cuando aplique.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Ofrecen seguro de viaje?</button>
+                            <div class="faq-answer">
+                                <p>Sí, ofrecemos una variedad de opciones de seguro de viaje para proteger tu inversión. Nuestros asesores pueden ayudarte a elegir la póliza que mejor se adapte a tus necesidades, cubriendo desde cancelaciones de vuelo hasta emergencias médicas.</p>
+                            </div>
+                        </div>
+                    
+                    <div class="emergency-contact">
+                        <h3>¿Necesitas Asistencia Inmediata?</h3>
+                        <p>Nuestros expertos en viajes están disponibles para asuntos urgentes y soporte de emergencia durante tu viaje.</p>
+                        <p><strong>Contacto de Emergencia</strong><br>+1 (555) 987-6543</p>
+                        <p><strong>Horario de Atención</strong><br>Lunes - Sábado: 8:00 am - 7:00 pm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Neo Trips. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <a href="https://wa.me/+524981107509?text=Hola,%20me%20gustaría%20saber%20más%20información%20sobre%20sus%20servicios%20de%20viaje." class="whatsapp-bubble" target="_blank">
+    <img src="assets/wsp.png" alt="WhatsApp" class="whatsapp-icon">
+</a>
+</body>
+</html>

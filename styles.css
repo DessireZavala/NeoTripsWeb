@@ -1,0 +1,776 @@
+/* Variables de colores */
+:root {
+    --verde: #cbd83b;
+    --morado: #a88aed;
+    --crema: #fffeec;
+    --azul-claro: #c2e2e7;
+    --texto-oscuro: #333333;
+    --texto-claro: #666666;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--texto-oscuro);
+    background-color: var(--crema);
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    color: var(--texto-oscuro);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--texto-claro);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0; /* quitamos el height fijo que rompía el layout */
+}
+
+.btn {
+    display: inline-block;
+    background: var(--morado);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background: var(--verde);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+section {
+    padding: 4rem 0;
+}
+
+/* ==== HEADER Y NAVEGACIÓN ==== */
+header {
+    background-color: var(--crema);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: 90px; /* más alto para el logo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* centra logo y links */
+    padding: 0.5rem 2rem;
+    min-height: 120px; /* asegura que la barra no se achique */
+}
+
+.logo-img {
+    max-height: 170px;  /* dale más altura */
+    width: auto;
+    display: block;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--texto-oscuro);
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--morado);
+}
+
+/* Hero Section */
+.hero {
+    /* CAMBIA ESTA RUTA POR LA DE TU IMAGEN */
+    background-image: url('assets/fam.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--texto-oscuro);
+    text-align: center;
+    padding: 10rem 0 6rem;
+    margin-top: 120px; /* más margen por header más alto */
+    position: relative;
+}
+
+/* Capa superpuesta para mejorar la legibilidad del texto */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3); /* Ajusta la opacidad según necesites */
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--texto-oscuro);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: var(--texto-oscuro);
+    font-weight: 500;
+}
+
+/* Resto del CSS se mantiene igual... */
+/* Services Section */
+.services {
+    background-color: white;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--verde);
+    margin: 0.5rem auto;
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    color: var(--texto-claro);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: var(--crema);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--morado);
+}
+
+.service-card h3 {
+    color: var(--texto-oscuro);
+    margin-bottom: 1rem;
+}
+
+/* Destinations Section */
+.destinations {
+    background: linear-gradient(135deg, var(--morado) 0%, var(--azul-claro) 100%);
+    color: white;
+    text-align: center;
+}
+
+.destinations .section-title {
+    color: white;
+}
+
+.destinations .section-title::after {
+    background: var(--verde);
+}
+
+.destinations .section-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.category {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+}
+
+.category h3 {
+    margin-bottom: 1rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    height: 387px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
+}
+
+.carousel-item {
+    min-width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carousel-item h4 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.carousel-item p {
+    margin-bottom: 0.3rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.carousel-btn {
+    background: var(--verde);
+    color: var(--texto-oscuro);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    font-weight: bold;
+}
+
+.carousel-btn:hover {
+    background: white;
+}
+
+.carousel-instruction {
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Contact Section */
+.contact {
+    background-color: var(--crema);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.contact-info, .faq, .social {
+    margin-bottom: 2rem;
+}
+
+.contact-details {
+    margin-top: 1rem;
+}
+
+.contact-details p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+}
+
+.contact-details p strong {
+    min-width: 100px;
+    color: var(--texto-oscuro);
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.faq-item p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+/* Estilos para el nuevo acordeón de FAQ */
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    color: var(--texto-oscuro);
+    transition: color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question:hover {
+    color: var(--morado);
+}
+
+.faq-question::after {
+    content: '+'; /* Ícono de "más" para indicar que se puede expandir */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--morado);
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+    content: '-'; /* Cambia el ícono a "menos" cuando está activo */
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 1rem;
+}
+
+.faq-answer.show {
+    max-height: 200px; /* Un valor lo suficientemente grande para contener el texto */
+    padding: 1rem;
+}
+
+.faq-answer p {
+    margin-bottom: 0;
+}
+
+.emergency-contact {
+    background: var(--azul-claro);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.emergency-contact h3 {
+    color: var(--morado);
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+    background: var(--texto-oscuro);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    
+    .nav-links {
+        gap: 1.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .categories {
+        gap: 1.5rem;
+    }
+    
+    .category {
+        min-width: 220px;
+    }
+}
+
+/* Tablets pequeñas y móviles grandes (768px y menos) */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        flex-direction: column;
+        padding: 0.5rem 0;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        padding: 0.5rem 0;
+        min-height: auto;
+        width: 100%;
+    }
+    
+    .logo-img {
+        max-height: 120px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .nav-links {
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .nav-links li {
+        margin: 0.3rem;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+    }
+    
+    .hero {
+        padding: 8rem 0 4rem;
+        margin-top: 140px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .categories {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .category {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .carousel {
+        height: 180px;
+    }
+    
+    .carousel-item h4 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Móviles pequeños (480px y menos) */
+@media (max-width: 480px) {
+    .hero {
+        padding: 6rem 0 3rem;
+        margin-top: 130px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
+    
+    .container {
+        width: 95%;
+        padding: 0 0.5rem;
+    }
+    
+    .logo-img {
+        max-height: 100px;
+    }
+    
+    .nav-links {
+        gap: 0.8rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .service-card {
+        padding: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .carousel {
+        height: 160px;
+    }
+    
+    .carousel-item {
+        padding: 0.8rem;
+    }
+    
+    .carousel-item h4 {
+        font-size: 1rem;
+    }
+    
+    .carousel-item p {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .contact-details p {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .contact-details p strong {
+        min-width: auto;
+        margin-bottom: 0.3rem;
+    }
+    
+    .whatsapp-bubble {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Dispositivos muy pequeños (360px y menos) */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    .nav-links {
+        gap: 0.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+    
+    .logo-img {
+        max-height: 80px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .carousel {
+        height: 140px;
+    }
+    
+    .carousel-item h4 {
+        font-size: 0.9rem;
+    }
+    
+    .carousel-item p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Orientación landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding: 5rem 0 2rem;
+        margin-top: 120px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero p {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Pantallas muy grandes (más de 1440px) */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+}
+
+.whatsapp-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #25d366; /* Color de fondo de WhatsApp */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.whatsapp-bubble:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-icon {
+    width: 35px; /* Ajusta el tamaño del ícono */
+    height: 35px;
+}

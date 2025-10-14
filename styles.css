@@ -1,36 +1,49 @@
-/* Variables de colores */
+/* Variables de colores (NUEVA PALETA) */
 :root {
-    --verde: #cbd83b;
-    --morado: #a88aed;
-    --crema: #fffeec;
-    --azul-claro: #c2e2e7;
-    --texto-oscuro: #333333;
+    /* Azules: Profesionalismo, Confianza, Calma */
+    --azul-profundo: #004E64; /* Antes morado */
+    --azul-claro-menta: #90E0EF; /* Antes verde */
+    --azul-acento-claro: #c2e2e7; /* Antes azul-claro */
+    
+    /* Acento: Felicidad, CTA */
+    --amarillo-dorado: #FFC300; 
+
+    /* Neutros: Claridad, Legibilidad */
+    --blanco-puro: #FFFFFF; 
+    --gris-claro-platinum: #E0E0E0; 
+    --texto-oscuro: #333333; /* Jet - Negro Suave */
     --texto-claro: #666666;
 }
 
-/* Estilos generales */
+/* Tipografía: Poppins para claridad y estilo moderno */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Fuente Poppins para modernidad y legibilidad */
+    font-family: 'Poppins';
 }
 
 body {
     line-height: 1.6;
     color: var(--texto-oscuro);
-    background-color: var(--crema);
+    /* Fondo limpio para coherencia visual */
+    background-color: var(--blanco-puro); 
     scroll-behavior: smooth;
 }
 
 h1, h2, h3 {
     margin-bottom: 1rem;
-    color: var(--texto-oscuro);
+    color: var(--azul-profundo); /* Títulos en color profesional */
+    font-weight: 600; /* Peso de fuente para títulos */
 }
 
 p {
     margin-bottom: 1rem;
     color: var(--texto-claro);
+    font-weight: 400;
 }
 
 .container {
@@ -42,23 +55,26 @@ p {
 
 .btn {
     display: inline-block;
-    background: var(--morado);
-    color: white;
+    /* Color de botón para Felicidad y CTA */
+    background: var(--amarillo-dorado); 
+    color: var(--texto-oscuro); /* Texto oscuro para contraste */
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700; /* Negrita para dar ganas de hacer clic */
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
-    background: var(--verde);
+    background: var(--azul-profundo); /* Hover a color de confianza */
+    color: var(--blanco-puro);
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
+
 
 section {
     padding: 4rem 0;
@@ -66,30 +82,48 @@ section {
 
 /* ==== HEADER Y NAVEGACIÓN ==== */
 header {
-    background-color: var(--crema);
+    background-color: var(--blanco-puro);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    height: 90px; /* más alto para el logo */
+    /* Altura estándar y consistente */
+    height: 80px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2rem; 
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center; /* centra logo y links */
-    padding: 0.5rem 2rem;
-    min-height: 120px; /* asegura que la barra no se achique */
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 0;
+    /* Importante: permite que el navbar se ajuste al contenido */
+    min-height: auto; 
+}
+
+/* **AJUSTE CRÍTICO DEL LOGO** */
+.logo {
+    /* Recorta el exceso de fondo blanco */
+    overflow: hidden; 
+    /* Establece la altura máxima del contenedor */
+    max-height: 80px; 
+    /* Ancho suficiente para el logo, pero recorta el fondo extra */
+    width: 250px; 
+    display: flex;
+    align-items: center; 
 }
 
 .logo-img {
-    max-height: 170px;  /* dale más altura */
+    /* Ajusta la altura de la imagen para que se centre y no desborde */
+    max-height: 50px;  
     width: auto;
     display: block;
+    /* Eliminar el margin-bottom si existía */
+    margin-bottom: 0; 
 }
 
 .nav-links {
@@ -113,20 +147,20 @@ header {
 }
 
 .nav-links a:hover {
-    color: var(--morado);
+    color: var(--azul-profundo); /* Hover con color principal de marca */
 }
 
 /* Hero Section */
 .hero {
-    /* CAMBIA ESTA RUTA POR LA DE TU IMAGEN */
-    background-image: url('assets/fam.jpeg');
+    background-image: url('assets/f.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: var(--texto-oscuro);
     text-align: center;
     padding: 10rem 0 6rem;
-    margin-top: 120px; /* más margen por header más alto */
+    /* Ajustar margin-top a la nueva altura del header */
+    margin-top: 80px; 
     position: relative;
 }
 
@@ -138,7 +172,7 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.3); /* Ajusta la opacidad según necesites */
+    background: rgba(255, 255, 255, 0.4); 
     z-index: 1;
 }
 
@@ -150,7 +184,7 @@ header {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    color: var(--texto-oscuro);
+    color: var(--azul-profundo); 
 }
 
 .hero p {
@@ -161,10 +195,10 @@ header {
     font-weight: 500;
 }
 
-/* Resto del CSS se mantiene igual... */
-/* Services Section */
+
+
 .services {
-    background-color: white;
+    background-color: var(--gris-claro-platinum); /* Fondo secundario gris claro */
 }
 
 .section-title {
@@ -179,7 +213,7 @@ header {
     display: block;
     width: 80px;
     height: 4px;
-    background: var(--verde);
+    background: var(--azul-claro-menta); /* Acento de calma bajo el título */
     margin: 0.5rem auto;
     border-radius: 2px;
 }
@@ -201,7 +235,7 @@ header {
 }
 
 .service-card {
-    background: var(--crema);
+    background: var(--blanco-puro); /* Fondo de tarjetas blanco puro */
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -217,7 +251,7 @@ header {
 .service-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--morado);
+    color: var(--azul-profundo); /* Iconos en color profesional */
 }
 
 .service-card h3 {
@@ -227,7 +261,7 @@ header {
 
 /* Destinations Section */
 .destinations {
-    background: linear-gradient(135deg, var(--morado) 0%, var(--azul-claro) 100%);
+    background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-claro-menta) 100%); /* Degradado de profesionalismo a calma */
     color: white;
     text-align: center;
 }
@@ -237,7 +271,8 @@ header {
 }
 
 .destinations .section-title::after {
-    background: var(--verde);
+    /* Usamos la variable correcta */
+    background: var(--azul-claro-menta); 
 }
 
 .destinations .section-subtitle {
@@ -316,7 +351,7 @@ header {
 }
 
 .carousel-btn {
-    background: var(--verde);
+    background: var(--amarillo-dorado); /* Botones de carrusel en color CTA */
     color: var(--texto-oscuro);
     border: none;
     border-radius: 50%;
@@ -331,7 +366,7 @@ header {
 }
 
 .carousel-btn:hover {
-    background: white;
+    background: var(--blanco-puro);
 }
 
 .carousel-instruction {
@@ -343,7 +378,7 @@ header {
 
 /* Contact Section */
 .contact {
-    background-color: var(--crema);
+    background-color: var(--blanco-puro);
 }
 
 .contact-grid {
@@ -401,14 +436,14 @@ header {
 }
 
 .faq-question:hover {
-    color: var(--morado);
+    color: var(--azul-profundo);
 }
 
 .faq-question::after {
     content: '+'; /* Ícono de "más" para indicar que se puede expandir */
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--morado);
+    color: var(--azul-profundo);
     transition: transform 0.3s ease;
 }
 
@@ -434,14 +469,14 @@ header {
 }
 
 .emergency-contact {
-    background: var(--azul-claro);
+    background: var(--azul-acento-claro); /* Fondo claro para el bloque de emergencia */
     padding: 1.5rem;
     border-radius: 10px;
     margin-top: 2rem;
 }
 
 .emergency-contact h3 {
-    color: var(--morado);
+    color: var(--azul-profundo);
     margin-bottom: 1rem;
 }
 
@@ -519,8 +554,10 @@ footer {
     }
     
     .logo-img {
-        max-height: 120px;
-        margin-bottom: 0.5rem;
+     /* Ajustar altura para móvil también */
+     max-height: 40px;
+     width: auto;
+     display: block;
     }
     
     .nav-links {
@@ -540,7 +577,8 @@ footer {
     
     .hero {
         padding: 8rem 0 4rem;
-        margin-top: 140px;
+        /* Ajustar margin-top para el header colapsado */
+        margin-top: 140px; 
     }
     
     .hero h1 {
@@ -606,7 +644,7 @@ footer {
     }
     
     .logo-img {
-        max-height: 100px;
+        max-height: 35px;
     }
     
     .nav-links {
@@ -698,7 +736,7 @@ footer {
     }
     
     .logo-img {
-        max-height: 80px;
+        max-height: 30px;
     }
     
     .section-title {

@@ -1,4 +1,4 @@
-/* Variables de colores (NUEVA PALETA) */
+/* Variables de colores (MANTENEMOS TU PALETA ACTUAL) */
 :root {
     /* Azules: Profesionalismo, Confianza, Calma */
     --azul-profundo: #004E64; /* Antes morado */
@@ -13,6 +13,13 @@
     --gris-claro-platinum: #E0E0E0; 
     --texto-oscuro: #333333; /* Jet - Negro Suave */
     --texto-claro: #666666;
+    
+    /* Colores para Tags de Paquetes (NUEVO) */
+    --tag-playa: #1E90FF; /* Azul brillante */
+    --tag-ciudad: #FFA500; /* Naranja */
+    --tag-aventura: #3CB371; /* Verde medio */
+    --tag-cultural: #9400D3; /* Violeta */
+    --tag-texto: #FFFFFF;
 }
 
 /* Tipografía: Poppins para claridad y estilo moderno */
@@ -50,9 +57,10 @@ p {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0; /* quitamos el height fijo que rompía el layout */
+    padding: 0; 
 }
 
+/* Estilo general para botones (Detalles, Reservar, Pagar) */
 .btn {
     display: inline-block;
     /* Color de botón para Felicidad y CTA */
@@ -75,12 +83,56 @@ p {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* Estilo para botones de acción en tarjetas */
+.btn-details {
+    background: transparent;
+    color: var(--azul-profundo);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    box-shadow: none;
+    border: 1px solid var(--azul-profundo);
+    font-weight: 500;
+}
+
+.btn-details:hover {
+    background: var(--azul-profundo);
+    color: var(--blanco-puro);
+    transform: none;
+}
+
+.btn-reserve {
+    background: var(--azul-profundo);
+    color: var(--blanco-puro);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    box-shadow: none;
+}
+
+.btn-reserve:hover {
+    background: var(--azul-claro-menta);
+    color: var(--texto-oscuro);
+    transform: none;
+}
+
+.btn-checkout {
+    /* Estilo del botón "Proceder al Pago" en el carrito */
+    background: var(--azul-profundo) !important;
+    color: var(--blanco-puro) !important;
+    border-radius: 0;
+    width: 100%;
+    padding: 1rem 0;
+    font-weight: 600;
+    box-shadow: none;
+}
+
 
 section {
     padding: 4rem 0;
 }
 
-/* ==== HEADER Y NAVEGACIÓN ==== */
+/* ==== HEADER Y NAVEGACIÓN (Actualizados según capturas) ==== */
 header {
     background-color: var(--blanco-puro);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -88,12 +140,36 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    /* Altura estándar y consistente */
-    height: 80px; 
+    height: 65px; /* Altura más baja como en las capturas */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem; 
+}
+
+.logo {
+    display: flex;
+    align-items: center; 
+    height: 100%;
+    overflow: hidden; 
+    width: 200px; /* Ancho ajustado para logo y subtítulo */
+}
+
+.logo-img {
+    max-height: 40px; /* Logo más pequeño */
+    width: auto;
+    display: block;
+    margin-right: 0.5rem;
+}
+
+/* Nuevo subtítulo del logo de la captura */
+.logo-subtitle { 
+    font-size: 0.7rem;
+    color: var(--texto-claro);
+    font-weight: 300;
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+    line-height: 1;
 }
 
 .navbar {
@@ -101,29 +177,8 @@ header {
     justify-content: flex-end; 
     align-items: center;
     padding: 0;
-    /* Importante: permite que el navbar se ajuste al contenido */
     min-height: auto; 
-}
-
-/* **AJUSTE CRÍTICO DEL LOGO** */
-.logo {
-    /* Recorta el exceso de fondo blanco */
-    overflow: hidden; 
-    /* Establece la altura máxima del contenedor */
-    max-height: 80px; 
-    /* Ancho suficiente para el logo, pero recorta el fondo extra */
-    width: 250px; 
-    display: flex;
-    align-items: center; 
-}
-
-.logo-img {
-    /* Ajusta la altura de la imagen para que se centre y no desborde */
-    max-height: 50px;  
-    width: auto;
-    display: block;
-    /* Eliminar el margin-bottom si existía */
-    margin-bottom: 0; 
+    gap: 1.5rem; /* Espacio entre nav-links y cart-icon */
 }
 
 .nav-links {
@@ -134,71 +189,104 @@ header {
     padding: 0;
 }
 
-.nav-links li {
-    margin: 0;
-}
-
 .nav-links a {
     text-decoration: none;
-    color: var(--texto-oscuro);
+    color: var(--texto-claro); /* Texto más sutil en nav */
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: color 0.3s ease;
+    padding-bottom: 3px;
+    border-bottom: 3px solid transparent; /* Para el active-link */
 }
 
-.nav-links a:hover {
-    color: var(--azul-profundo); /* Hover con color principal de marca */
+.nav-links a:hover, .nav-links a.active-link {
+    color: var(--azul-profundo);
+    border-color: var(--azul-profundo); /* Subrayado en hover/active */
 }
 
-/* Hero Section */
-.hero {
-    background-image: url('assets/f.png');
+/* Icono del Carrito (Bolsa de Compras) */
+.cart-icon button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--texto-oscuro);
+    padding: 0.5rem;
+    transition: color 0.3s;
+}
+.cart-icon button:hover {
+    color: var(--azul-profundo);
+}
+
+/* Hero Section para la nueva estructura */
+.hero-packages {
+    /* Usamos una imagen genérica para simular el fondo de mapa de la captura */
+    background-image: url('assets/map_bg.jpg'); 
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    color: var(--texto-oscuro);
+    color: var(--blanco-puro);
     text-align: center;
-    padding: 10rem 0 6rem;
-    /* Ajustar margin-top a la nueva altura del header */
-    margin-top: 80px; 
+    padding: 8rem 0; /* Altura más contenida */
+    margin-top: 65px; 
     position: relative;
 }
 
-/* Capa superpuesta para mejorar la legibilidad del texto */
-.hero::before {
+/* Capa superpuesta oscura para mejorar la legibilidad y simular la imagen */
+.hero-packages::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.4); 
+    background: rgba(0, 0, 0, 0.4); 
     z-index: 1;
 }
 
-.hero .container {
+.hero-packages .container {
     position: relative;
     z-index: 2;
 }
 
-.hero h1 {
+.exclusive-title {
+    font-size: 0.9rem;
+    color: var(--gris-claro-platinum);
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.hero-packages h1 {
     font-size: 3rem;
-    margin-bottom: 1.5rem;
-    color: var(--azul-profundo); 
+    margin-bottom: 1rem;
+    color: var(--blanco-puro); 
 }
 
-.hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
+.hero-subtitle-packages {
+    font-size: 1.1rem;
+    max-width: 600px;
     margin: 0 auto 2rem;
-    color: var(--texto-oscuro);
-    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
 }
 
+.btn-explore {
+    /* Estilo del botón "Explorar Destinos" */
+    background: var(--blanco-puro);
+    color: var(--texto-oscuro);
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
 
+.btn-explore:hover {
+    background: var(--amarillo-dorado);
+    color: var(--texto-oscuro);
+}
 
+/* Services Section (MANTENIDO) */
 .services {
-    background-color: var(--gris-claro-platinum); /* Fondo secundario gris claro */
+    background-color: var(--gris-claro-platinum); 
 }
 
 .section-title {
@@ -213,7 +301,7 @@ header {
     display: block;
     width: 80px;
     height: 4px;
-    background: var(--azul-claro-menta); /* Acento de calma bajo el título */
+    background: var(--azul-claro-menta); 
     margin: 0.5rem auto;
     border-radius: 2px;
 }
@@ -235,7 +323,7 @@ header {
 }
 
 .service-card {
-    background: var(--blanco-puro); /* Fondo de tarjetas blanco puro */
+    background: var(--blanco-puro); 
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -251,7 +339,7 @@ header {
 .service-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--azul-profundo); /* Iconos en color profesional */
+    color: var(--azul-profundo); 
 }
 
 .service-card h3 {
@@ -259,123 +347,542 @@ header {
     margin-bottom: 1rem;
 }
 
-/* Destinations Section */
+/* Destinos Section (ELIMINADA) - Reemplazada por Paquetes Turísticos */
 .destinations {
-    background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-claro-menta) 100%); /* Degradado de profesionalismo a calma */
-    color: white;
+    display: none; /* Ocultamos la sección antigua de carruseles */
+}
+
+/* ==== SECCIÓN DE PAQUETES TURÍSTICOS (NUEVO) ==== */
+.paquetes-turisticos {
+    background-color: var(--blanco-puro);
     text-align: center;
 }
 
-.destinations .section-title {
-    color: white;
-}
-
-.destinations .section-title::after {
-    /* Usamos la variable correcta */
-    background: var(--azul-claro-menta); 
-}
-
-.destinations .section-subtitle {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.categories {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.category {
-    flex: 1;
-    min-width: 250px;
-    max-width: 350px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.category:hover {
-    transform: translateY(-5px);
-}
-
-.category h3 {
-    margin-bottom: 1rem;
-    color: white;
-    font-size: 1.5rem;
-}
-
-.carousel {
-    position: relative;
-    overflow: hidden;
-    margin: 1.5rem 0;
-    height: 387px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.carousel-inner {
-    display: flex;
-    transition: transform 0.5s ease;
-    height: 100%;
-}
-
-.carousel-item {
-    min-width: 100%;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.carousel-item h4 {
-    color: white;
+.paquetes-title-small {
+    font-size: 0.8rem;
+    color: var(--texto-claro);
+    font-weight: 300;
     margin-bottom: 0.5rem;
-    font-size: 1.2rem;
 }
 
-.carousel-item p {
-    margin-bottom: 0.3rem;
-    color: rgba(255, 255, 255, 0.8);
+.paquetes-title-large {
+    font-size: 2rem;
+    color: var(--texto-oscuro);
+    margin-bottom: 1rem;
+    font-weight: 700;
 }
 
-.carousel-controls {
+.paquetes-subtitle {
+    font-size: 1rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+/* Filtros de Categoría */
+.category-filters {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin: 1rem 0;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    /* Se añade el borde y padding sutil como en la captura */
+    border: 1px solid var(--gris-claro-platinum);
+    border-radius: 5px;
+    display: inline-flex;
+    padding: 0.3rem;
 }
 
-.carousel-btn {
-    background: var(--amarillo-dorado); /* Botones de carrusel en color CTA */
-    color: var(--texto-oscuro);
+.filter-btn {
+    background: transparent;
     border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    color: var(--texto-oscuro);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
     cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-    font-weight: bold;
+    gap: 0.3rem;
 }
 
-.carousel-btn:hover {
+.filter-btn:hover {
+    background: var(--gris-claro-platinum);
+}
+
+.filter-btn.active {
+    background: var(--azul-profundo);
+    color: var(--blanco-puro);
+    font-weight: 600;
+}
+.filter-btn.active .filter-icon {
+    color: var(--amarillo-dorado);
+}
+
+/* Grid de Paquetes (Tarjetas) */
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    text-align: left;
+}
+
+.package-card {
+    border: 1px solid var(--gris-claro-platinum);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
     background: var(--blanco-puro);
 }
 
-.carousel-instruction {
-    text-align: center;
-    margin-top: 2rem;
-    font-style: italic;
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.package-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.package-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--tag-texto);
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.tag-playa { background-color: var(--tag-playa); }
+.tag-ciudad { background-color: var(--tag-ciudad); }
+.tag-aventura { background-color: var(--tag-aventura); }
+.tag-cultural { background-color: var(--tag-cultural); }
+
+.package-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 200px); /* Ocupa el resto de la altura */
+}
+
+.package-title {
+    color: var(--texto-oscuro);
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.package-location {
+    font-size: 0.8rem;
+    color: var(--texto-claro);
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.package-description {
+    font-size: 0.9rem;
+    color: var(--texto-claro);
+    margin-bottom: 1rem;
+    height: 3rem; /* Límites de altura para consistencia */
+    overflow: hidden;
+}
+
+.package-details-info {
+    margin-bottom: 1rem;
+}
+
+.package-info {
+    font-size: 0.9rem;
+    color: var(--texto-oscuro);
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.package-footer {
+    border-top: 1px solid var(--gris-claro-platinum);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Empuja el footer al fondo */
+}
+
+.package-price {
+    font-size: 1.3rem;
+    color: var(--azul-profundo);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.package-price span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--texto-claro);
+}
+
+.package-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Mensaje de confirmación flotante (simulado) */
+.reservation-confirmation {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4CAF50; /* Un verde de éxito */
+    color: var(--blanco-puro);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1100;
+    display: none; /* Inicialmente oculto */
+    text-align: left;
+    max-width: 250px;
+    border-left: 5px solid #2E7D32;
+}
+
+.reservation-confirmation p {
+    color: var(--blanco-puro);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.close-confirmation {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 1rem;
+    cursor: pointer;
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* ==== CARRITO DE RESERVAS (Pop-up) ==== */
+.reservation-cart-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background: var(--blanco-puro);
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1200;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation-cart-popup.open {
+    transform: translateX(0);
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gris-claro-platinum);
+}
+
+.cart-header h3 {
+    margin: 0;
+    color: var(--texto-oscuro);
+}
+
+.close-cart-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--texto-claro);
+}
+
+.cart-content {
+    flex-grow: 1; /* Permite que el contenido ocupe el espacio */
+    overflow-y: auto; /* Scroll si hay muchos items */
+}
+
+.cart-item {
+    display: flex;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--gris-claro-platinum);
+    align-items: center;
+}
+
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.item-title {
+    font-weight: 600;
+    color: var(--texto-oscuro);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.item-info {
+    font-size: 0.8rem;
+    color: var(--texto-claro);
+    margin: 0;
+}
+
+.item-price {
+    font-weight: 600;
+    color: var(--azul-profundo);
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--texto-claro);
+    margin-left: 0.5rem;
+}
+
+.cart-summary {
+    padding: 1.5rem 1.5rem 0; /* Espacio antes del botón */
+    background: var(--gris-claro-platinum);
+    margin-top: auto; 
+}
+
+.cart-summary p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--texto-oscuro);
+}
+
+.cart-summary .total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    border-top: 1px solid var(--texto-claro);
+    padding-top: 0.5rem;
+    color: var(--azul-profundo);
+}
+
+.cart-summary .total span {
+    color: var(--azul-profundo);
+}
+/* Estilos para el botón de checkout en el summary */
+.cart-summary .btn-checkout {
+    margin-top: 1rem;
+    margin-left: -1.5rem;
+    width: calc(100% + 3rem);
+    border-radius: 0;
+    padding: 1rem 0;
+}
+
+/* ==== MODAL DE DETALLES (NUEVO) ==== */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1001; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--blanco-puro);
+    margin: 5% auto; 
+    padding: 0;
+    border: 1px solid var(--gris-claro-platinum);
+    width: 90%; 
+    max-width: 600px; 
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.close-modal-btn {
+    color: var(--texto-oscuro);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 10;
+    background: var(--blanco-puro);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.close-modal-btn:hover,
+.close-modal-btn:focus {
+    color: var(--azul-profundo);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-body-content {
+    padding: 20px;
+    /* Ajustes para el contenido de la modal de la captura */
+}
+
+.modal-header-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    display: block;
+}
+
+.modal-details {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.modal-details h4 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--azul-profundo);
+}
+
+.modal-details .package-info {
+    font-weight: 500;
+    color: var(--texto-oscuro);
+}
+
+.modal-details .package-info strong {
+    font-weight: 700;
+}
+
+.modal-details .package-description {
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.package-inclusions h5 {
+    color: var(--texto-oscuro);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gris-claro-platinum);
+    padding-bottom: 0.5rem;
+}
+
+.package-inclusions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.package-inclusions li {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: var(--texto-claro);
+    display: flex;
+    align-items: center;
+}
+
+.package-inclusions li::before {
+    content: "✅";
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--azul-profundo);
+}
+
+.modal-reservation-section {
+    background: var(--gris-claro-platinum);
+    padding: 1.5rem;
+    border-radius: 0 0 8px 8px;
+    margin-top: 1rem;
+}
+
+.modal-reservation-section h5 {
+    color: var(--azul-profundo);
+    margin-top: 0;
+}
+
+.modal-reservation-section .form-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.modal-reservation-section label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--texto-oscuro);
+}
+
+.modal-reservation-section select, 
+.modal-reservation-section input[type="number"] {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--texto-claro);
+    font-size: 0.9rem;
+}
+
+.modal-price-total {
+    border-top: 1px solid var(--texto-claro);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.modal-price-total .package-price {
+    font-size: 1.5rem;
+}
+
+.modal-price-total span {
+    font-size: 0.9rem;
+    display: block;
+    color: var(--texto-claro);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.modal-actions .btn {
+    border-radius: 5px;
+    padding: 0.6rem 1.2rem;
+}
 /* Contact Section */
 .contact {
     background-color: var(--blanco-puro);

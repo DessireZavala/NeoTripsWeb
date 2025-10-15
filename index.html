@@ -6,34 +6,62 @@
     <title>Neo Trips</title>
         <link rel="icon" type="image/svg+xml" href="assets/maletaa.png">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
          <div class="logo">
-                    <a>
+                    <a href="#">
                         <img src="assets/NEO TRIPS LOGOO.png" alt="Logo Neo Trips" class="logo-img">
                     </a>
+                    <span class="logo-subtitle">Experiencias Únicas</span>
                 </div> 
             <nav class="navbar">
                 <ul class="nav-links">
-                    <li><a href="#services">Servicios</a></li>
-                    <li><a href="#destinations">Destinos</a></li>
+                    <li><a href="#" class="active-link">Inicio</a></li>
+                    <li><a href="#paquetes-turisticos">Paquetes</a></li>
+                    <li><a href="#paquetes-turisticos">Destinos</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
+                <div class="cart-icon">
+                    <button id="open-cart-btn">🛒</button>
+                    <div id="reservation-cart" class="reservation-cart-popup">
+                        <div class="cart-header">
+                            <h3>Carrito de Reservas</h3>
+                            <button class="close-cart-btn">&times;</button>
+                        </div>
+                        <div class="cart-content">
+                            <div class="cart-item" data-id="santorini-1">
+                                <img src="assets/santorini_thumb.jpg" alt="Santorini" class="cart-item-img">
+                                <div class="cart-item-details">
+                                    <p class="item-title">Santorini al Atardecer</p>
+                                    <p class="item-info">Santorini, Grecia</p>
+                                    <p class="item-info">14 Nov 2025</p>
+                                    <p class="item-info">1 persona</p>
+                                </div>
+                                <div class="item-price">$1,799</div>
+                                <button class="remove-item-btn" data-id="santorini-1">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="cart-summary">
+                            <p>Subtotal <span>$1,799</span></p>
+                            <p>Impuestos y tasas <span>$179.90</span></p>
+                            <p class="total">Total <span>$1,978.90</span></p>
+                            <button class="btn btn-checkout">Proceder al Pago</button>
+                        </div>
+                    </div>
+                </div>
             </nav>
     </header>
-    <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-packages">
         <div class="container">
-            <h1>Descubre tu próxima aventura</h1>
-            <p>Desde playas vírgenes hasta ciudades vibrantes, creamos viajes inolvidables diseñados solo para ti</p>
-            <a href="#contact" class="btn">Comienza tu viaje</a>
+            <p class="exclusive-title">EXPERIENCIAS EXCLUSIVAS</p>
+            <h1>Descubre el Mundo</h1>
+            <p class="hero-subtitle-packages">Paquetes turísticos cuidadosamente seleccionados para crear momentos inolvidables en los destinos más fascinantes.</p>
+            <a href="#paquetes-turisticos" class="btn btn-explore">Explorar Destinos</a>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">Nuestros Servicios</h2>
@@ -75,119 +103,235 @@
         </div>
     </section>
 
-    <!-- Destinations Section -->
-    <section class="destinations" id="destinations">
+    <section class="paquetes-turisticos" id="paquetes-turisticos">
         <div class="container">
-            <h2 class="section-title">Explora Destinos</h2>
-            <p class="section-subtitle">
-                Descubre destinos increíbles en tres categorías únicas. Cada carrusel muestra diferentes lugares dentro de esa categoría.
+            <p class="paquetes-title-small">DESTINOS CUIDADOSAMENTE SELECCIONADOS</p>
+            <h2 class="paquetes-title-large">Paquetes Turísticos</h2>
+            <p class="paquetes-subtitle">
+                Explora nuestra colección de experiencias únicas, diseñadas para ofrecerte momentos inolvidables en los destinos más fascinantes del mundo
             </p>
             
-            <div class="categories">
-                <!-- Beach Destinations -->
-                <div class="category">
-                    <h3>Destinos de Playa</h3>
-                    <div class="carousel" id="beach-carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item">
-                                <img src="assets/Cancún.jpeg" alt="Cancun" class="carousel-img">
-                                <h4>Cancún</h4>
-                                <p>México</p>
-                                <p>Aguas turquesa, arena blanca y vida nocturna vibrante</p>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/PuertoV.jpeg" alt="Puerto Vallarta" class="carousel-img">
-                                <h4>Puerto Vallarta</h4>
-                                <p>México</p>
-                                <p>Playas doradas y encanto colonial junto al Pacífico</p>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/los_cabos.jpeg" alt="Los Cabos" class="carousel-img">
-                                <h4>Los Cabos</h4>
-                                <p>Mexico</p>
-                                <p>Desierto y mar unidos en paisajes espectaculares</p>
+            <div class="category-filters">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="playa"><span class="filter-icon">🏖️</span> Playa</button>
+                <button class="filter-btn" data-filter="ciudad"><span class="filter-icon">🏙️</span> Ciudad</button>
+                <button class="filter-btn" data-filter="aventura"><span class="filter-icon">⛰️</span> Aventura</button>
+                <button class="filter-btn" data-filter="cultural"><span class="filter-icon">🎭</span> Cultural</button>
+            </div>
+
+            <div class="packages-grid">
+                
+                <div class="package-card" data-category="playa" data-id="caribe">
+                    <div class="package-tag tag-playa">Playa</div>
+                    <img src="assets/caribe.jpg" alt="Paraíso Caribeño" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Paraíso Caribeño</h4>
+                        <p class="package-location">Caribe Mexicano</p>
+                        <p class="package-description">Disfruta de las playas más hermosas del Caribe mexicano con todo incluido. Resort de lujo...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **7 días / 6 noches**</p>
+                            <p class="package-info">👥 **Hasta 4 personas**</p>
+                            <p class="package-info">Próxima salida: **15 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$1,299** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="caribe">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="caribe">Reservar</button>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn prev" data-carousel="beach" data-direction="-1">&#10094;</button>
-                        <button class="carousel-btn next" data-carousel="beach" data-direction="1">&#10095;</button>
+                </div>
+
+                <div class="package-card" data-category="ciudad" data-id="paris">
+                    <div class="package-tag tag-ciudad">Ciudad</div>
+                    <img src="assets/paris.jpg" alt="Romance en París" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Romance en París</h4>
+                        <p class="package-location">París, Francia</p>
+                        <p class="package-description">Explora la ciudad del amor con visitas guiadas a los monumentos más icónicos. Experiencia...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **5 días / 4 noches**</p>
+                            <p class="package-info">👥 **Hasta 2 personas**</p>
+                            <p class="package-info">Próxima salida: **10 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$1,899** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="paris">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="paris">Reservar</button>
+                            </div>
+                        </div>
                     </div>
-                    
+                </div>
+
+                <div class="package-card" data-category="ciudad" data-id="tokyo">
+                    <div class="package-tag tag-ciudad">Ciudad</div>
+                    <img src="assets/tokio.jpg" alt="Tokyo Moderno" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Tokyo Moderno</h4>
+                        <p class="package-location">Tokyo, Japón</p>
+                        <p class="package-description">Sumérgete en la fascinante cultura japonesa, desde templos antiguos hasta la tecnología más...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **10 días / 9 noches**</p>
+                            <p class="package-info">👥 **Hasta 6 personas**</p>
+                            <p class="package-info">Próxima salida: **5 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$2,499** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="tokyo">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="tokyo">Reservar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="package-card" data-category="aventura" data-id="machu">
+                    <div class="package-tag tag-aventura">Aventura</div>
+                    <img src="assets/machu_picchu.jpg" alt="Machu Picchu Místico" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Machu Picchu Místico</h4>
+                        <p class="package-location">Machu Picchu, Perú</p>
+                        <p class="package-description">Explora la majestuosa ciudad inca y descubre los misterios de la civilización más fascinante d...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **8 días / 7 noches**</p>
+                            <p class="package-info">👥 **Hasta 8 personas**</p>
+                            <p class="package-info">Próxima salida: **12 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$1,599** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="machu">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="machu">Reservar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="package-card" data-category="playa cultural" data-id="santorini">
+                    <div class="package-tag tag-playa">Playa</div>
+                    <img src="assets/santorini.jpg" alt="Santorini al Atardecer" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Santorini al Atardecer</h4>
+                        <p class="package-location">Santorini, Grecia</p>
+                        <p class="package-description">Vive la magia de las puestas de sol más espectaculares de las islas griegas...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **7 días / 6 noches**</p>
+                            <p class="package-info">👥 **Hasta 4 personas**</p>
+                            <p class="package-info">Próxima salida: **14 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$1,799** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="santorini">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="santorini">Reservar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Cabins & Nature Retreats -->
-                <div class="category">
-                    <h3>Cabañas y Retiros en la Naturaleza</h3>
-                    <div class="carousel" id="nature-carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item">
-                                <img src="assets/arteaga.jpeg" alt="Arteaga" class="carousel-img">
-                                <h4>Arteaga</h4>
-                                <p>Coahuila, México</p>
-                                <p>Paisajes nevados y cabañas acogedoras en la sierra</p>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/valle.jpeg" alt="Valle de Bravo" class="carousel-img">
-                                <h4>Valle de Bravo</h4>
-                                <p>Estado de México</p>
-                                <p>Bosques verdes y un lago ideal para desconectar</p>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/valquirico.jpeg" alt="Valquirico" class="carousel-img">
-                                <h4>Valquirico</h4>
-                                <p>Estado de Tlaxcala, Mexico</p>
-                                <p>Pueblo pintoresco con esencia medieval en México</p>
+                <div class="package-card" data-category="ciudad" data-id="dubai">
+                    <div class="package-tag tag-ciudad">Ciudad</div>
+                    <img src="assets/dubai.jpg" alt="Dubai Lujoso" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Dubai Lujoso</h4>
+                        <p class="package-location">Dubai, UAE</p>
+                        <p class="package-description">Experimenta el lujo árabe en la ciudad de los rascacielos futuristas y el desierto dorado...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **6 días / 5 noches**</p>
+                            <p class="package-info">👥 **Hasta 4 personas**</p>
+                            <p class="package-info">Próxima salida: **18 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$2,299** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="dubai">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="dubai">Reservar</button>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn prev" data-carousel="nature" data-direction="-1">&#10094;</button>
-                        <button class="carousel-btn next" data-carousel="nature" data-direction="1">&#10095;</button>
+                </div>
+
+                <div class="package-card" data-category="cultural" data-id="bali">
+                    <div class="package-tag tag-cultural">Cultural</div>
+                    <img src="assets/bali.jpg" alt="Bali Espiritual" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Bali Espiritual</h4>
+                        <p class="package-location">Bali, Indonesia</p>
+                        <p class="package-description">Descubre la isla de los dioses con sus templos sagrados, arrozales en terrazas y playas...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **9 días / 8 noches**</p>
+                            <p class="package-info">👥 **Hasta 6 personas**</p>
+                            <p class="package-info">Próxima salida: **11 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$1,699** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="bali">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="bali">Reservar</button>
+                            </div>
+                        </div>
                     </div>
-                    
                 </div>
                 
-                <!-- City Trips -->
-                <div class="category">
-                    <h3>Escapadas Urbanas</h3>
-                    <div class="carousel" id="city-carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item">
-                                <img src="assets/oaxaca.jpeg" alt="Oaxaca" class="carousel-img">
-                                <h4>Oaxaca</h4>
-                                <p>Mexico</p>
-                                <p>Tradición, cultura y sabores únicos en cada rincón</p>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/queretaro.jpeg" alt="Querétaro" class="carousel-img">
-                                <h4>Querétaro</h4>
-                                <p>Mexico</p>
-                                <p>Historia colonial y modernidad en perfecta armonía</p>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/guanajuato.jpeg" alt="Guanajuato" class="carousel-img">
-                                <h4>Guanajuato</h4>
-                                <p>Mexico</p>
-                                <p>Calles coloridas y leyendas en una ciudad mágica</p>
+                <div class="package-card" data-category="ciudad" data-id="ny">
+                    <div class="package-tag tag-ciudad">Ciudad</div>
+                    <img src="assets/new_york.jpg" alt="Nueva York Vibrante" class="package-img">
+                    <div class="package-content">
+                        <h4 class="package-title">Nueva York Vibrante</h4>
+                        <p class="package-location">Nueva York, USA</p>
+                        <p class="package-description">La ciudad que nunca duerme te espera con sus rascacielos icónicos, Broadway y la Estatua de L...</p>
+                        
+                        <div class="package-details-info">
+                            <p class="package-info">🗓️ **6 días / 5 noches**</p>
+                            <p class="package-info">👥 **Hasta 4 personas**</p>
+                            <p class="package-info">Próxima salida: **8 Nov 2025**</p>
+                        </div>
+
+                        <div class="package-footer">
+                            <p class="package-price">DESDE **$2,199** <span>por persona</span></p>
+                            <div class="package-actions">
+                                <button class="btn btn-details" data-package-id="ny">Detalles</button>
+                                <button class="btn btn-reserve" data-package-id="ny">Reservar</button>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn prev" data-carousel="city" data-direction="-1">&#10094;</button>
-                        <button class="carousel-btn next" data-carousel="city" data-direction="1">&#10095;</button>
-                    </div>
-                    
                 </div>
+
             </div>
             
-            <p class="carousel-instruction">
-                Usa los botones de flecha para explorar diferentes destinos dentro de cada categoría
-            </p>
+            <div class="reservation-confirmation" id="reservation-confirmation">
+                <p>Reserva confirmada! <br>Recibirás un correo con los detalles de tu viaje</p>
+                <div class="close-confirmation">✕</div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <div id="package-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn">&times;</span>
+            <div id="modal-body-content">
+                </div>
+        </div>
+    </div>
+
+
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title">Ponte en Contacto</h2>
@@ -216,7 +360,6 @@
                                 </a>
                             </div>
 
-                        <!-- Nuevo bloque de opinión -->
                         <div class="feedback">
                             <p>¿Tienes alguna opinión o sugerencia? ¡Compártela con nosotros aquí!</p>
                             <a href="https://forms.gle/tWa3q82DgMMBz8cy9" target="_blank" class="btn">Enviar Opinión</a>
@@ -262,7 +405,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 Neo Trips. Todos los derechos reservados.</p>

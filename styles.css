@@ -221,7 +221,7 @@ header {
 /* Hero Section para la nueva estructura */
 .hero-packages {
     /* Usamos una imagen genérica para simular el fondo de mapa de la captura */
-    background-image: url('assets/map_bg.jpg'); 
+    background-image: url('assets/f.png'); 
     background-size: cover;
     background-position: center;
     color: var(--blanco-puro);
@@ -1048,16 +1048,20 @@ footer {
 /* Tablets pequeñas y móviles grandes (768px y menos) */
 @media (max-width: 768px) {
     header {
-        height: auto;
-        flex-direction: column;
-        padding: 0.5rem 0;
+        height: 65px;
+        flex-direction: row;
+        padding: 0.1rem;
     }
     
+    .logo {
+        width: 150px;
+    }
+
+    .logo-subtitle {
+        display: none;
+    }
     .navbar {
-        flex-direction: column;
-        padding: 0.5rem 0;
-        min-height: auto;
-        width: 100%;
+        gap: 0.5rem;
     }
     
     .logo-img {
@@ -1068,10 +1072,7 @@ footer {
     }
     
     .nav-links {
-        margin-top: 0.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
+        display: none;
     }
     
     .nav-links li {
@@ -1096,6 +1097,38 @@ footer {
         font-size: 1rem;
         padding: 0 1rem;
     }
+    .hero-packages {
+        padding: 6rem 0;
+        margin-top: 65px; 
+    }
+    
+    .hero-packages h1 {
+        font-size: 2.5rem;
+    }
+    
+    .paquetes-turisticos {
+        padding: 2rem 0;
+    }
+
+    .category-filters {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.3rem;
+        border: none;
+        justify-content: flex-start;
+        display: flex; /* Asegura el flexbox */
+        margin: 0 auto 2rem;
+    }
+    
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .reservation-cart-popup {
+        width: 100%;
+    }
+
     
     .categories {
         flex-direction: column;
@@ -1318,4 +1351,202 @@ footer {
 .whatsapp-icon {
     width: 35px; /* Ajusta el tamaño del ícono */
     height: 35px;
+}
+
+/* --- NUEVA SECCIÓN: OFERTAS EXCLUSIVAS (Reemplazo de Services) --- */
+.exclusive-offers {
+    background-color: var(--gris-claro-platinum); /* Fondo claro para destacar */
+}
+
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.offer-card {
+    background: var(--blanco-puro);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+}
+
+.offer-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--amarillo-dorado);
+    color: var(--texto-oscuro);
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    z-index: 5;
+}
+
+.offer-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.offer-content {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.offer-content h3 {
+    color: var(--azul-profundo);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.offer-details {
+    font-size: 0.9rem;
+    color: var(--texto-claro);
+    margin-bottom: 1rem;
+    min-height: 2.5rem;
+}
+
+.offer-price {
+    font-size: 1.2rem;
+    color: var(--texto-oscuro);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.offer-price strong {
+    color: var(--azul-profundo);
+}
+
+.offers-cta {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+/* --- NUEVA SECCIÓN: DESTINOS DESTACADOS (Estilo inspo.jpg) --- */
+
+.destinos-destacados {
+    background-color: var(--blanco-puro);
+}
+
+.featured-destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 400px; /* Altura de la fila */
+    gap: 1.5rem;
+}
+
+.destination-card {
+    border-radius: 15px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.destination-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.large-card {
+    grid-column: span 2; /* Ocupa 2 columnas */
+}
+
+.small-card {
+    grid-column: span 1; /* Ocupa 1 columna */
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Degradado oscuro para el estilo minimalista y de lectura */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.3) 100%);
+    color: var(--blanco-puro);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.card-overlay h2 {
+    font-size: 3rem; /* Título grande como en inspo.jpg */
+    margin-bottom: 0.5rem;
+    color: var(--blanco-puro);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.card-overlay p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.card-btn {
+    background: var(--amarillo-dorado);
+    color: var(--texto-oscuro);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.card-btn:hover {
+    background: var(--blanco-puro);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Responsive para Destinos Destacados */
+@media (max-width: 1024px) {
+    .featured-destinations-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 350px 350px;
+    }
+    .large-card {
+        grid-column: span 2;
+    }
+    .small-card {
+        grid-column: span 1;
+    }
+    .card-overlay h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-destinations-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px 300px 300px;
+    }
+    .large-card, .small-card {
+        grid-column: span 1;
+    }
+    .card-overlay h2 {
+        font-size: 2rem;
+    }
+    .offers-grid {
+        grid-template-columns: 1fr;
+    }
 }

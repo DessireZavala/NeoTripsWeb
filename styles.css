@@ -10,7 +10,7 @@
 
     /* Neutros: Claridad, Legibilidad */
     --blanco-puro: #FFFFFF; 
-    --gris-claro-platinum: #E0E0E0; 
+    --gris-claro-platinum: #f0f0f0; 
     --texto-oscuro: #333333; /* Jet - Negro Suave */
     --texto-claro: #666666;
     
@@ -231,8 +231,31 @@ header {
     position: relative;
 }
 
+.hero-packages2 {
+    /* Usamos una imagen genérica para simular el fondo de mapa de la captura */
+    background-image: url('assets/familia2.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: var(--blanco-puro);
+    text-align: center;
+    padding: 8rem 0; /* Altura más contenida */
+    margin-top: 65px; 
+    position: relative;
+}
+
 /* Capa superpuesta oscura para mejorar la legibilidad y simular la imagen */
 .hero-packages::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: 1;
+}
+
+.hero-packages2::before {
     content: '';
     position: absolute;
     top: 0;
@@ -256,6 +279,12 @@ header {
 }
 
 .hero-packages h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--blanco-puro); 
+}
+
+.hero-packages2 h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--blanco-puro); 

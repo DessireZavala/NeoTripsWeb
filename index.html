@@ -1,257 +1,442 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neo Trips</title>
-        <link rel="icon" type="image/svg+xml" href="assets/maletaa.png">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="icon" type="image/svg+xml" href="assets/maletaa.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-         <div class="logo">
-                    <a href="#">
-                        <img src="assets/NEO TRIPS LOGOO.png" alt="Logo Neo Trips" class="logo-img">
-                    </a>
-                </div> 
-            <nav class="navbar">
-                <ul class="nav-links">
-                    <li><a href="#" class="active-link">Inicio</a></li>
-                    <li><a href="paquetes.html">Paquetes</a></li>
-                    <li><a href="#destinos-destacados">Destinos</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                </ul>
-                <div class="cart-icon">
-                    <button id="open-cart-btn">🛒</button>
-                    <div id="reservation-cart" class="reservation-cart-popup">
-                        <div class="cart-header">
-                            <h3>Carrito de Reservas</h3>
-                            <button class="close-cart-btn">&times;</button>
-                        </div>
-                        <div class="cart-content">
-                             <div class="cart-item" data-id="santorini-1">
-                                <img src="assets/tokio.jpg" alt="Santorini" class="cart-item-img">
-                                <div class="cart-item-details">
-                                    <p class="item-title">Santorini al Atardecer</p>
-                                    <p class="item-info">Santorini, Grecia</p>
-                                    <p class="item-info">14 Nov 2025</p>
-                                    <p class="item-info">1 persona</p>
-                                </div>
-                                <div class="item-price">$1,799</div>
-                                <button class="remove-item-btn" data-id="santorini-1">🗑️</button>
-                            </div>
-                        </div>
-                        <div class="cart-summary">
-                            <p>Subtotal <span>$1,799</span></p>
-                            <p>Impuestos y tasas <span>$179.90</span></p>
-                            <p class="total">Total <span>$1,978.90</span></p>
-                            <button class="btn btn-checkout">Proceder al Pago</button>
-                        </div>
-                    </div>
+      <div class="logo">
+        <a href="#">
+          <img
+            src="assets/NEO TRIPS LOGOO.png"
+            alt="Logo Neo Trips"
+            class="logo-img"
+          />
+        </a>
+      </div>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="#" class="active-link">Inicio</a></li>
+          <li><a href="paquetes.html">Paquetes</a></li>
+          <li><a href="#destinos-destacados">Destinos</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+        <div class="cart-icon">
+          <button id="open-cart-btn">🛒</button>
+          <div id="reservation-cart" class="reservation-cart-popup">
+            <div class="cart-header">
+              <h3>Carrito de Reservas</h3>
+              <button class="close-cart-btn">&times;</button>
+            </div>
+            <div class="cart-content">
+              <div class="cart-item" data-id="santorini-1">
+                <img
+                  src="assets/tokio.jpg"
+                  alt="Santorini"
+                  class="cart-item-img"
+                />
+                <div class="cart-item-details">
+                  <p class="item-title">Santorini al Atardecer</p>
+                  <p class="item-info">Santorini, Grecia</p>
+                  <p class="item-info">14 Nov 2025</p>
+                  <p class="item-info">1 persona</p>
                 </div>
-            </nav>
-    </header>
-    
-    <section class="hero-packages">
-        <div class="container">
-            <p class="exclusive-title">EXPERIENCIAS EXCLUSIVAS</p>
-            <h1>Descubre el Mundo</h1>
-            <p class="hero-subtitle-packages">Paquetes turísticos cuidadosamente seleccionados para crear momentos inolvidables en los destinos más fascinantes.</p>
-            <a href="paquetes.html" class="btn btn-explore">Explorar Paquetes</a>
+                <div class="item-price">$1,799</div>
+                <button class="remove-item-btn" data-id="santorini-1">
+                  🗑️
+                </button>
+              </div>
+            </div>
+            <div class="cart-summary">
+              <p>Subtotal <span>$1,799</span></p>
+              <p>Impuestos y tasas <span>$179.90</span></p>
+              <p class="total">Total <span>$1,978.90</span></p>
+              <button class="btn btn-checkout">Proceder al Pago</button>
+            </div>
+          </div>
         </div>
+      </nav>
+    </header>
+
+    <section class="hero-packages">
+      <div class="container">
+        <p class="exclusive-title">EXPERIENCIAS EXCLUSIVAS</p>
+        <h1>Descubre el Mundo</h1>
+        <p class="hero-subtitle-packages">
+          Paquetes turísticos cuidadosamente seleccionados para crear momentos
+          inolvidables en los destinos más fascinantes.
+        </p>
+        <a href="paquetes.html" class="btn btn-explore">Explorar Paquetes</a>
+      </div>
     </section>
 
     <section class="exclusive-offers" id="exclusive-offers">
-        <div class="container">
-            <h2 class="section-title">Ofertas Exclusivas</h2>
-            <p class="section-subtitle">
-                Aprovecha nuestros descuentos de temporada y vive la aventura de tus sueños a precios inigualables.
-            </p>
-            
-            <div class="offers-grid">
-                <div class="offer-card">
-                    <div class="offer-tag">20% OFF</div>
-                    <img src="assets/escapebali.jpg" alt="Oferta Bali" class="offer-img">
-                    <div class="offer-content">
-                        <h3>Escape a Bali</h3>
-                        <p class="offer-details">7 días de relax en villas con piscina privada.</p>
-                        <p class="offer-price">Desde **$1,359** *por persona*</p>
-                        <a href="paquetes.html#bali" class="btn btn-reserve">Ver Oferta</a>
-                    </div>
-                </div>
-                
-                <div class="offer-card">
-                    <div class="offer-tag">Último Minuto</div>
-                    <img src="assets/aventuracusco.jpg" alt="Oferta Machu Picchu" class="offer-img">
-                    <div class="offer-content">
-                        <h3>Aventura en Cusco</h3>
-                        <p class="offer-details">Tour de 4 días a Machu Picchu con guía experto.</p>
-                        <p class="offer-price">Desde **$999** *por persona*</p>
-                        <a href="paquetes.html#machu" class="btn btn-reserve">Ver Oferta</a>
-                    </div>
-                </div>
-                
-                <div class="offer-card">
-                    <div class="offer-tag">Black Friday</div>
-                    <img src="assets/kioto.jpg" alt="Oferta Tokyo" class="offer-img">
-                    <div class="offer-content">
-                        <h3>Tokyo y Kioto Express</h3>
-                        <p class="offer-details">10 días explorando lo mejor de Japón.</p>
-                        <p class="offer-price">Desde **$1,999** *por persona*</p>
-                        <a href="paquetes.html#tokyo" class="btn btn-reserve">Ver Oferta</a>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Ofertas Exclusivas</h2>
+        <p class="section-subtitle">
+          Aprovecha nuestros descuentos de temporada y vive la aventura de tus
+          sueños a precios inigualables.
+        </p>
+
+        <div class="offers-grid">
+          <div class="offer-card">
+            <div class="offer-tag">20% OFF</div>
+            <img
+              src="assets/escapebali.jpg"
+              alt="Oferta Bali"
+              class="offer-img"
+            />
+            <div class="offer-content">
+              <h3>Escape a Bali</h3>
+              <p class="offer-details">
+                7 días de relax en villas con piscina privada.
+              </p>
+              <p class="offer-price">Desde **$1,359** *por persona*</p>
+              <a href="paquetes.html#bali" class="btn btn-reserve"
+                >Ver Oferta</a
+              >
             </div>
-            
-            <div class="offers-cta">
-                <a href="paquetes.html" class="btn btn-explore">Ver Todos los Paquetes</a>
+          </div>
+
+          <div class="offer-card">
+            <div class="offer-tag">Último Minuto</div>
+            <img
+              src="assets/aventuracusco.jpg"
+              alt="Oferta Machu Picchu"
+              class="offer-img"
+            />
+            <div class="offer-content">
+              <h3>Aventura en Cusco</h3>
+              <p class="offer-details">
+                Tour de 4 días a Machu Picchu con guía experto.
+              </p>
+              <p class="offer-price">Desde **$999** *por persona*</p>
+              <a href="paquetes.html#machu" class="btn btn-reserve"
+                >Ver Oferta</a
+              >
             </div>
+          </div>
+
+          <div class="offer-card">
+            <div class="offer-tag">Black Friday</div>
+            <img src="assets/kioto.jpg" alt="Oferta Tokyo" class="offer-img" />
+            <div class="offer-content">
+              <h3>Tokyo y Kioto Express</h3>
+              <p class="offer-details">10 días explorando lo mejor de Japón.</p>
+              <p class="offer-price">Desde **$1,999** *por persona*</p>
+              <a href="paquetes.html#tokyo" class="btn btn-reserve"
+                >Ver Oferta</a
+              >
+            </div>
+          </div>
         </div>
+
+        <div class="offers-cta">
+          <a href="paquetes.html" class="btn btn-explore"
+            >Ver Todos los Paquetes</a
+          >
+        </div>
+      </div>
     </section>
 
     <section class="destinos-destacados" id="destinos-destacados">
-        <div class="container">
-            <h2 class="section-title">Destinos Destacados</h2>
-            <p class="section-subtitle">
-                Explora nuestra selección con lugares que no te puedes perder.
-            </p>
+      <div class="container">
+        <h2 class="section-title">Destinos Destacados</h2>
+        <p class="section-subtitle">
+          Explora nuestra selección con lugares que no te puedes perder.
+        </p>
 
-            <div class="featured-destinations-grid">
-                <div class="destination-card small-card" style="background-image: url('assets/destamachu.jpg');">
-                    <div class="card-overlay">
-                        <h2>Explora los Andes</h2>
-                        <p>Machu Picchu, Perú</p>
-                        <a href="paquetes.html#machu" class="btn card-btn">Ver Aventura</a>
-                    </div>
-                </div>
-
-                <div class="destination-card small-card" style="background-image: url('assets/destsanto.jpg');">
-                    <div class="card-overlay">
-                        <h2>El Egeo Místico</h2>
-                        <p>Santorini, Grecia</p>
-                        <a href="paquetes.html#santorini" class="btn card-btn">Ver Relax</a>
-                    </div>
-                </div>
-
-                <div class="destination-card small-card" style="background-image: url('assets/duba.webp');">
-                    <div class="card-overlay">
-                        <h2>El Lujo del Desierto</h2>
-                        <p>Dubai, EAU</p>
-                        <a href="paquetes.html#dubai" class="btn card-btn">Ver Ciudad</a>
-                    </div>
-                </div>
-                
+        <div class="featured-destinations-grid">
+          <div
+            class="destination-card small-card"
+            style="background-image: url('assets/destamachu.jpg')"
+          >
+            <div class="card-overlay">
+              <h2>Explora los Andes</h2>
+              <p>Machu Picchu, Perú</p>
+              <a href="paquetes.html#machu" class="btn card-btn"
+                >Ver Aventura</a
+              >
             </div>
+          </div>
+
+          <div
+            class="destination-card small-card"
+            style="background-image: url('assets/destsanto.jpg')"
+          >
+            <div class="card-overlay">
+              <h2>El Egeo Místico</h2>
+              <p>Santorini, Grecia</p>
+              <a href="paquetes.html#santorini" class="btn card-btn"
+                >Ver Relax</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="destination-card small-card"
+            style="background-image: url('assets/duba.webp')"
+          >
+            <div class="card-overlay">
+              <h2>El Lujo del Desierto</h2>
+              <p>Dubai, EAU</p>
+              <a href="paquetes.html#dubai" class="btn card-btn">Ver Ciudad</a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
-    
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Ponte en Contacto</h2>
-            <p class="section-subtitle">
-                ¿Listo para comenzar a planear tus vacaciones soñadas? ¡Contáctanos hoy y hagámoslo realidad!
-            </p>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Información de Contacto</h3>
-                    <div class="contact-details">
-                        <p><strong>Email</strong><br>neotrips@gmailcom</p>
-                        <p><strong>Teléfono</strong><br>+52 498 110 7509</p>
-                        <p><strong>Dirección</strong><br>Calle Mar Mediterráneo No 46<br> Col. Paraiso del Nazas. Torreón Coahuila</p>
-                    </div>
-                    
-                    <div class="social">
-                        <h3>Síguenos</h3>
-                        <p>Conéctate con nosotros en redes sociales para inspiración y novedades de viaje</p>
-                            <div class="social-links">
-                                <a href="https://facebook.com" target="_blank" class="social-link">
-                                    <img src="assets/face.svg" alt="Facebook" width="50" height="50">
-                                </a>
-                                <a href="https://instagram.com" target="_blank" class="social-link">
-                                    <img src="assets/in.png" alt="Instagram" width="50" height="50">
-                                </a>
-                            </div>
 
-                        <div class="feedback">
-                            <p>¿Tienes alguna opinión o sugerencia? ¡Compártela con nosotros aquí!</p>
-                            <a href="https://forms.gle/tWa3q82DgMMBz8cy9" target="_blank" class="btn">Enviar Opinión</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq">
-                        <h3>Preguntas Frecuentes</h3>
-                        <div class="faq-item">
-                            <button class="faq-question">¿Con cuánta anticipación debo reservar mi viaje?</button>
-                            <div class="faq-answer">
-                                <p>Recomendamos reservar con 3 a 6 meses de antelación para asegurar la disponibilidad y mejores tarifas, especialmente para viajes en temporada alta o a destinos muy populares. Si tu viaje es en temporada baja o es de último minuto, contáctanos y haremos todo lo posible por ayudarte.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <button class="faq-question">¿Qué métodos de pago aceptan?</button>
-                            <div class="faq-answer">
-                                <p>Aceptamos diversas formas de pago para tu comodidad, incluyendo tarjetas de crédito (Visa, Mastercard, American Express), transferencias bancarias y depósitos en efectivo.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <button class="faq-question">¿Cuál es su política de cancelación?</button>
-                            <div class="faq-answer">
-                                <p>Nuestra política de cancelación depende del proveedor de servicios (aerolínea, hotel, tour). Te proporcionaremos todos los detalles de la política específica al momento de la reserva. Ofrecemos asistencia en el proceso de cancelación y reembolsos cuando aplique.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <button class="faq-question">¿Ofrecen seguro de viaje?</button>
-                            <div class="faq-answer">
-                                <p>Sí, ofrecemos una variedad de opciones de seguro de viaje para proteger tu inversión. Nuestros asesores pueden ayudarte a elegir la póliza que mejor se adapte a tus necesidades, cubriendo desde cancelaciones de vuelo hasta emergencias médicas.</p>
-                            </div>
-                        </div>
-                    
-                    <div class="emergency-contact">
-                        <h3>¿Necesitas Asistencia Inmediata?</h3>
-                        <p>Nuestros expertos en viajes están disponibles para asuntos urgentes y soporte de emergencia durante tu viaje.</p>
-                        <p><strong>Contacto de Emergencia</strong><br>+1 (555) 987-6543</p>
-                        <p><strong>Horario de Atención</strong><br>Lunes - Sábado: 8:00 am - 7:00 pm</p>
-                    </div>
-                </div>
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Ponte en Contacto</h2>
+        <p class="section-subtitle">
+          ¿Listo para comenzar a planear tus vacaciones soñadas? ¡Contáctanos
+          hoy y hagámoslo realidad!
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Información de Contacto</h3>
+            <div class="contact-details">
+              <p><strong>Email</strong><br />neotrips@gmailcom</p>
+              <p><strong>Teléfono</strong><br />+52 498 110 7509</p>
+              <p>
+                <strong>Dirección</strong><br />Calle Mar Mediterráneo No 46<br />
+                Col. Paraiso del Nazas. Torreón Coahuila
+              </p>
             </div>
+
+            <div class="social">
+              <h3>Síguenos</h3>
+              <p>
+                Conéctate con nosotros en redes sociales para inspiración y
+                novedades de viaje
+              </p>
+              <div class="social-links">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <img
+                    src="assets/face.svg"
+                    alt="Facebook"
+                    width="50"
+                    height="50"
+                  />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <img
+                    src="assets/in.png"
+                    alt="Instagram"
+                    width="50"
+                    height="50"
+                  />
+                </a>
+              </div>
+
+              <div class="feedback">
+                <p>
+                  ¿Tienes alguna opinión o sugerencia? ¡Compártela con nosotros
+                  aquí!
+                </p>
+                <a
+                  href="https://forms.gle/tWa3q82DgMMBz8cy9"
+                  target="_blank"
+                  class="btn"
+                  >Enviar Opinión</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq">
+            <h3>Preguntas Frecuentes</h3>
+            <div class="faq-item">
+              <button class="faq-question">
+                ¿Con cuánta anticipación debo reservar mi viaje?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Recomendamos reservar con 3 a 6 meses de antelación para
+                  asegurar la disponibilidad y mejores tarifas, especialmente
+                  para viajes en temporada alta o a destinos muy populares. Si
+                  tu viaje es en temporada baja o es de último minuto,
+                  contáctanos y haremos todo lo posible por ayudarte.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                ¿Qué métodos de pago aceptan?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Aceptamos diversas formas de pago para tu comodidad,
+                  incluyendo tarjetas de crédito (Visa, Mastercard, American
+                  Express), transferencias bancarias y depósitos en efectivo.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                ¿Cuál es su política de cancelación?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Nuestra política de cancelación depende del proveedor de
+                  servicios (aerolínea, hotel, tour). Te proporcionaremos todos
+                  los detalles de la política específica al momento de la
+                  reserva. Ofrecemos asistencia en el proceso de cancelación y
+                  reembolsos cuando aplique.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">¿Ofrecen seguro de viaje?</button>
+              <div class="faq-answer">
+                <p>
+                  Sí, ofrecemos una variedad de opciones de seguro de viaje para
+                  proteger tu inversión. Nuestros asesores pueden ayudarte a
+                  elegir la póliza que mejor se adapte a tus necesidades,
+                  cubriendo desde cancelaciones de vuelo hasta emergencias
+                  médicas.
+                </p>
+              </div>
+            </div>
+
+            <div class="emergency-contact">
+              <h3>¿Necesitas Asistencia Inmediata?</h3>
+              <p>
+                Nuestros expertos en viajes están disponibles para asuntos
+                urgentes y soporte de emergencia durante tu viaje.
+              </p>
+              <p>
+                <strong>Contacto de Emergencia</strong><br />+1 (555) 987-6543
+              </p>
+              <p>
+                <strong>Horario de Atención</strong><br />Lunes - Sábado: 8:00
+                am - 7:00 pm
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <div id="privacy-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-privacy-btn">&times;</span>
-            <h3>Aviso de Privacidad</h3>
-            <div class="privacy-policy-content">
-                <p>En Neo Trips, nos comprometemos a proteger tu privacidad. La información que nos proporcionas se utiliza exclusivamente para procesar tus reservaciones y mejorar tu experiencia de viaje.</p>
-                <p><strong>Recopilación de Datos:</strong> Recopilamos datos como tu nombre, correo electrónico y detalles de pago para gestionar tus reservas con nuestros proveedores (aerolíneas, hoteles, etc.).</p>
-                <p><strong>Uso de la Información:</strong> Tu información no será compartida con terceros con fines de marketing sin tu consentimiento explícito. Se utiliza para:</p>
-                <ul>
-                    <li>Confirmar y gestionar tu reserva.</li>
-                    <li>Enviar actualizaciones sobre tu itinerario.</li>
-                    <li>Procesar pagos de forma segura.</li>
-                    <li>Contactarte en caso de ser necesario.</li>
-                </ul>
-                <p><strong>Seguridad:</strong> Implementamos medidas de seguridad para proteger tus datos contra el acceso no autorizado.</p>
-                <p>Al hacer clic en "Aceptar", confirmas que has leído y aceptas nuestro aviso de privacidad y los términos y condiciones para proceder con el pago.</p>
-            </div>
-            <div class="privacy-modal-actions">
-                <button id="decline-privacy-btn" class="btn btn-details">Rechazar</button>
-                <button id="accept-privacy-btn" class="btn btn-reserve">Aceptar</button>
-            </div>
+      <div class="modal-content">
+        <span class="close-privacy-btn">&times;</span>
+        <h3>Aviso de Privacidad</h3>
+        <div class="privacy-policy-content">
+          <p>
+            En Neo Trips, nos comprometemos a proteger tu privacidad. La
+            información que nos proporcionas se utiliza exclusivamente para
+            procesar tus reservaciones y mejorar tu experiencia de viaje.
+          </p>
+          <p>
+            <strong>Recopilación de Datos:</strong> Recopilamos datos como tu
+            nombre, correo electrónico y detalles de pago para gestionar tus
+            reservas con nuestros proveedores (aerolíneas, hoteles, etc.).
+          </p>
+          <p>
+            <strong>Uso de la Información:</strong> Tu información no será
+            compartida con terceros con fines de marketing sin tu consentimiento
+            explícito. Se utiliza para:
+          </p>
+          <ul>
+            <li>Confirmar y gestionar tu reserva.</li>
+            <li>Enviar actualizaciones sobre tu itinerario.</li>
+            <li>Procesar pagos de forma segura.</li>
+            <li>Contactarte en caso de ser necesario.</li>
+          </ul>
+          <p>
+            <strong>Seguridad:</strong> Implementamos medidas de seguridad para
+            proteger tus datos contra el acceso no autorizado.
+          </p>
+          <p>
+            <strong>Cookies: </strong> Utilizamos cookies para mejorar la funcionalidad del
+            sitio web y personalizar tu experiencia. Puedes gestionar tus
+            preferencias de cookies en la configuración de tu navegador.
+          <p>
+            Al hacer clic en "Aceptar", confirmas que has leído y aceptas
+            nuestro aviso de privacidad y los términos y condiciones para
+            proceder con el pago.
+          </p>
         </div>
+        <div class="privacy-modal-actions">
+          <button id="decline-privacy-btn" class="btn btn-details">
+            Rechazar
+          </button>
+          <button id="accept-privacy-btn" class="btn btn-reserve">
+            Aceptar
+          </button>
+        </div>
+      </div>
     </div>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Neo Trips. Todos los derechos reservados.</p>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Neo Trips</h4>
+            <p>Creando experiencias de viaje inolvidables desde 2025.</p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Legal</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="javascript:void(0)" id="privacy-link-footer"
+                  >Aviso de Privacidad</a>
+              </li>
+              <li>
+                <a href="#" id="terms-link-footer">Términos y Condiciones</a>
+              </li>
+              <li>
+                <a href="#" id="cancellation-link-footer"
+                  >Política de Cancelación</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Soporte</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#contact">Centro de Ayuda</a></li>
+              <li><a href="index.html#contact">Preguntas Frecuentes</a></li>
+              <li><a href="index.html#contact">Asistencia al Viajero</a></li>
+            </ul>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Neo Trips. Todos los derechos reservados.</p>
+        </div>
+      </div>
     </footer>
 
     <script src="script.js"></script>
-    <a href="https://wa.me/+524981107509?text=Hola,%20me%20gustaría%20saber%20más%20información%20sobre%20sus%20servicios%20de%20viaje." class="whatsapp-bubble" target="_blank">
-    <img src="assets/wsp.png" alt="WhatsApp" class="whatsapp-icon">
-</a>
-</body>
+    <a
+      href="https://wa.me/+524981107509?text=Hola,%20me%20gustaría%20saber%20más%20información%20sobre%20sus%20servicios%20de%20viaje."
+      class="whatsapp-bubble"
+      target="_blank"
+    >
+      <img src="assets/wsp.png" alt="WhatsApp" class="whatsapp-icon" />
+    </a>
+  </body>
 </html>

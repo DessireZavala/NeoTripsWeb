@@ -103,8 +103,45 @@ const packageData = {
             'Alojamiento en hoteles boutique',
             'Tour guiado por barrios de Tokyo'
         ]
-    }
-    // Añade el resto de tus 8 paquetes aquí.
+    },
+    
+    'paris': {
+        title: 'París Romántico',
+        location: 'París, Francia',
+        tag: 'Ciudad',
+        image: 'assets/paris.jpg',
+        description: 'Descubre la Ciudad de la Luz: pasea por la Torre Eiffel, explora el Louvre y disfruta de los encantadores cafés parisinos. Ideal para parejas y amantes de la cultura.',
+        price: '2,399',
+        duration: '7 días / 6 noches',
+        group: 'Hasta 4 personas',
+        nextDeparture: '20 Nov 2025',
+        inclusions: [
+            'Vuelos ida y vuelta',
+            'Hotel en el centro de París',
+            'Paseo en barco por el Sena',
+            'Entrada a la Torre Eiffel',
+            'Tour guiado por Montmartre y Louvre',
+            'Desayunos incluidos'
+        ]
+    },
+    'bali': {
+        title: 'Bali Exótico',
+        location: 'Bali, Indonesia',
+        tag: 'Playa',
+        image: 'assets/bali.jpg',
+        description: 'Vive una experiencia única entre templos sagrados, playas paradisíacas y naturaleza tropical. Perfecto para quienes buscan relajación y aventura.',
+        price: '1,899',
+        duration: '8 días / 7 noches',
+        group: 'Hasta 4 personas',
+        nextDeparture: '22 Nov 2025',
+        inclusions: [
+            'Vuelos y traslados',
+            'Resort frente al mar con desayuno incluido',
+            'Tour a templos y arrozales de Ubud',
+            'Clase de yoga y spa tradicional',
+            'Excursión en barco a islas cercanas'
+        ]
+    }// Añade el resto de tus 8 paquetes aquí.
 };
 
 // --- Lógica de la Modal de Detalles (Útil para index.html y paquetes.html) ---
@@ -341,4 +378,54 @@ document.addEventListener('DOMContentLoaded', function() {
         section.classList.add('fade-in');
         observer.observe(section);
     });
+
+    // --- Lógica del Modal de Aviso de Privacidad (NUEVO) ---
+    const checkoutBtns = document.querySelectorAll('.btn-checkout');
+    const privacyModal = document.getElementById('privacy-policy-modal');
+    const closePrivacyBtn = document.querySelector('.close-privacy-btn');
+    const acceptPrivacyBtn = document.getElementById('accept-privacy-btn');
+    const declinePrivacyBtn = document.getElementById('decline-privacy-btn');
+
+    if (privacyModal && checkoutBtns.length > 0) {
+        // Abrir el modal de privacidad
+        checkoutBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Previene cualquier acción por defecto del botón
+                privacyModal.style.display = 'block';
+            });
+        });
+
+        // Función para cerrar el modal
+        const closePrivacyModal = () => {
+            privacyModal.style.display = 'none';
+        };
+
+        // Cerrar modal con el botón 'x' y el botón 'Rechazar'
+        if (closePrivacyBtn) {
+            closePrivacyBtn.addEventListener('click', closePrivacyModal);
+        }
+        if (declinePrivacyBtn) {
+            declinePrivacyBtn.addEventListener('click', closePrivacyModal);
+        }
+
+        // Aceptar y simular pago
+        if (acceptPrivacyBtn) {
+            acceptPrivacyBtn.addEventListener('click', () => {
+                closePrivacyModal();
+                // Simulación de pago
+                //alert('¡Pago procesado exitosamente! Gracias por tu compra.');
+                // Opcional: cerrar el popup del carrito también
+                if(reservationCart) {
+                    reservationCart.classList.remove('open');
+                }
+            });
+        }
+        
+        // Cerrar modal si se hace clic fuera de él
+        window.addEventListener('click', (event) => {
+            if (event.target == privacyModal) {
+                closePrivacyModal();
+            }
+        });
+    }
 });

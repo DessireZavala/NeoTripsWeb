@@ -60,6 +60,7 @@
               <p>Impuestos y tasas <span>$179.90</span></p>
               <p class="total">Total <span>$1,978.90</span></p>
               <button class="btn btn-checkout">Proceder al Pago</button>
+              <div id="walletBrick_container">PROCEDER AL PAGO</div>
             </div>
           </div>
         </div>
@@ -81,6 +82,8 @@
     <section class="exclusive-offers" id="exclusive-offers">
       <div class="container">
         <h2 class="section-title">Ofertas Exclusivas</h2>
+        <div id="walletBrick_container">PROCEDER AL PAGO</div>
+
         <p class="section-subtitle">
           Aprovecha nuestros descuentos de temporada y vive la aventura de tus
           sueños a precios inigualables.
@@ -437,6 +440,29 @@
     <script src="js/product-loader.js"></script>
     <script src="js/cart-manager.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+  // Configure sua chave pública do Mercado Pago
+  const publicKey = "YOUR_PUBLIC_KEY";
+  // Configure o ID de preferência que você deve receber do seu backend
+  const preferenceId = "YOUR_PREFERENCE_ID";
+
+  // Inicializa o SDK do Mercado Pago
+  const mp = new MercadoPago(publicKey);
+
+  // Cria o botão de pagamento
+  const bricksBuilder = mp.bricks();
+  const renderWalletBrick = async (bricksBuilder) => {
+    await bricksBuilder.create("wallet", "walletBrick_container", {
+      initialization: {
+        preferenceId: "<PREFERENCE_ID>",
+      }
+});
+  };
+
+  renderWalletBrick(bricksBuilder);
+</script>
+
     <a
       href="https://wa.me/+524981107509?text=Hola,%20me%20gustaría%20saber%20más%20información%20sobre%20sus%20servicios%20de%20viaje."
       class="whatsapp-bubble"

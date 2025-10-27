@@ -1,15 +1,38 @@
-// js/cart-manager.js
+// js/cart-manager.js - VERSIÓN CORREGIDA
 class CartManager {
     constructor() {
         this.cart = JSON.parse(localStorage.getItem('neotrips_cart')) || [];
+        this.init();
     }
 
-    addToCart(productId, fechaSalida, numPersonas) {
+    init() {
+        this.updateCartUI();
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        // Re-asignar event listeners después de actualizar el UI
+        this.setupRemoveListeners();
+        
+        // Configurar checkout
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-checkout')) {
+                e.preventDefault();
+                this.proceedToCheckout();
+            }
+        });
+    }
+
+    addToCart(productId, fechaSalida = null, numPersonas = 1) {
         const product = productLoader.getProduct(productId);
         if (!product) {
             console.error('Producto no encontrado:', productId);
             return false;
         }
+
+        // Usar la fecha de salida por defecto si no se proporciona
+        const fecha = fechaSalida || product.nextDeparture;
+        const personas = parseInt(numPersonas) || 1;
 
         const cartItem = {
             id: `${productId}-${Date.now()}`,
@@ -18,16 +41,15 @@ class CartManager {
             location: product.location,
             image: product.image,
             price: parseInt(product.price),
-            fechaSalida: fechaSalida,
-            numPersonas: parseInt(numPersonas),
-            subtotal: parseInt(product.price) * parseInt(numPersonas)
+            fechaSalida: fecha,
+            numPersonas: personas,
+            subtotal: parseInt(product.price) * personas
         };
 
         this.cart.push(cartItem);
         this.saveCart();
         this.updateCartUI();
         
-        // Mostrar confirmación
         this.showConfirmationMessage(`¡${product.title} agregado al carrito!`);
         return true;
     }
@@ -47,7 +69,7 @@ class CartManager {
     }
 
     getTaxes() {
-        return this.getCartTotal() * 0.10; // 10% impuestos
+        return this.getCartTotal() * 0.10;
     }
 
     getGrandTotal() {
@@ -70,7 +92,7 @@ class CartManager {
                         <p class="item-info">${item.fechaSalida}</p>
                         <p class="item-info">${item.numPersonas} persona(s)</p>
                     </div>
-                    <div class="item-price">$${item.subtotal}</div>
+                    <div class="item-price">$${item.subtotal.toLocaleString()}</div>
                     <button class="remove-item-btn" data-id="${item.id}">🗑️</button>
                 </div>
             `).join('');
@@ -85,35 +107,46 @@ class CartManager {
         const cartSummary = document.querySelector('.cart-summary');
         if (!cartSummary) return;
 
+        const subtotal = this.getCartTotal();
+        const taxes = this.getTaxes();
+        const total = this.getGrandTotal();
+
         cartSummary.innerHTML = `
-            <p>Subtotal <span>$${this.getCartTotal()}</span></p>
-            <p>Impuestos y tasas <span>$${this.getTaxes().toFixed(2)}</span></p>
-            <p class="total">Total <span>$${this.getGrandTotal().toFixed(2)}</span></p>
+            <p>Subtotal <span>$${subtotal.toLocaleString()}</span></p>
+            <p>Impuestos y tasas <span>$${taxes.toFixed(2)}</span></p>
+            <p class="total">Total <span>$${total.toFixed(2)}</span></p>
             <button class="btn btn-checkout" ${this.cart.length === 0 ? 'disabled' : ''}>
                 Proceder al Pago
             </button>
         `;
+
+        // Re-asignar event listener al nuevo botón
+        const checkoutBtn = cartSummary.querySelector('.btn-checkout');
+        if (checkoutBtn && !checkoutBtn.disabled) {
+            checkoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.proceedToCheckout();
+            });
+        }
     }
 
     updateCartCount() {
-        const cartCount = document.querySelector('.cart-count');
         const openCartBtn = document.getElementById('open-cart-btn');
-        
+        if (!openCartBtn) return;
+
+        // Remover contador existente
+        const existingCount = openCartBtn.querySelector('.cart-count');
+        if (existingCount) {
+            existingCount.remove();
+        }
+
+        // Agregar nuevo contador si hay items
         if (this.cart.length > 0) {
-            if (!cartCount && openCartBtn) {
-                const countElement = document.createElement('span');
-                countElement.className = 'cart-count';
-                countElement.textContent = this.cart.length;
-                openCartBtn.style.position = 'relative';
-                openCartBtn.appendChild(countElement);
-            } else if (cartCount) {
-                cartCount.textContent = this.cart.length;
-            }
-        } else {
-            const existingCount = document.querySelector('.cart-count');
-            if (existingCount) {
-                existingCount.remove();
-            }
+            const countElement = document.createElement('span');
+            countElement.className = 'cart-count';
+            countElement.textContent = this.cart.length;
+            openCartBtn.style.position = 'relative';
+            openCartBtn.appendChild(countElement);
         }
     }
 
@@ -126,23 +159,59 @@ class CartManager {
         });
     }
 
-    showConfirmationMessage(message) {
-        const confirmationMessage = document.getElementById("reservation-confirmation");
-        if (confirmationMessage) {
-            confirmationMessage.querySelector("p").textContent = message;
-            confirmationMessage.style.display = "block";
-            setTimeout(() => {
-                confirmationMessage.style.display = "none";
-            }, 5000);
+    proceedToCheckout() {
+        if (this.cart.length === 0) {
+            alert('Tu carrito está vacío');
+            return;
         }
+
+        // Mostrar modal de políticas de privacidad
+        const privacyModal = document.getElementById('privacy-policy-modal');
+        if (privacyModal) {
+            privacyModal.style.display = 'block';
+        }
+    }
+
+    showConfirmationMessage(message) {
+        // Crear o actualizar el mensaje de confirmación
+        let confirmationMessage = document.getElementById("reservation-confirmation");
+        
+        if (!confirmationMessage) {
+            confirmationMessage = document.createElement('div');
+            confirmationMessage.id = "reservation-confirmation";
+            confirmationMessage.className = "reservation-confirmation";
+            confirmationMessage.innerHTML = `
+                <p>${message}</p>
+                <div class="close-confirmation">✕</div>
+            `;
+            document.body.appendChild(confirmationMessage);
+            
+            // Agregar event listener para cerrar
+            confirmationMessage.querySelector('.close-confirmation').addEventListener('click', () => {
+                confirmationMessage.style.display = 'none';
+            });
+        } else {
+            confirmationMessage.querySelector("p").textContent = message;
+        }
+        
+        confirmationMessage.style.display = "block";
+        setTimeout(() => {
+            confirmationMessage.style.display = "none";
+        }, 3000);
     }
 
     clearCart() {
         this.cart = [];
         this.saveCart();
         this.updateCartUI();
+        this.showConfirmationMessage('¡Carrito vaciado!');
+    }
+
+    // Método para obtener el carrito actual
+    getCart() {
+        return this.cart;
     }
 }
 
-// Instancia global
+// Instancia global del carrito
 const cartManager = new CartManager();

@@ -56,12 +56,11 @@
               </div>
             </div>
             <div class="cart-summary">
-              <p>Subtotal <span>$1,799</span></p>
-              <p>Impuestos y tasas <span>$179.90</span></p>
+              
               <p class="total">Total <span>$1,978.90</span></p>
-              <button class="btn btn-checkout">Proceder al Pago</button>
-              <div id="walletBrick_container">PROCEDER AL PAGO</div>
-            </div>
+              <div id="walletBrick_container"></div>
+              
+            </div> 
           </div>
         </div>
       </nav>
@@ -441,26 +440,28 @@
     <script src="js/cart-manager.js"></script>
     <script src="js/main.js"></script>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
+    
     <script>
+
+
   // Configure sua chave pública do Mercado Pago
-  const publicKey = "YOUR_PUBLIC_KEY";
+  const publicKey = "APP_USR-7eefc015-7669-41bd-a68d-29012d0f8f3c";
   // Configure o ID de preferência que você deve receber do seu backend
-  const preferenceId = "YOUR_PREFERENCE_ID";
+  let preferenceId = null;
 
   // Inicializa o SDK do Mercado Pago
   const mp = new MercadoPago(publicKey);
 
   // Cria o botão de pagamento
   const bricksBuilder = mp.bricks();
-  const renderWalletBrick = async (bricksBuilder) => {
-    await bricksBuilder.create("wallet", "walletBrick_container", {
-      initialization: {
-        preferenceId: "<PREFERENCE_ID>",
-      }
-});
-  };
+  //const renderWalletBrick = async (bricksBuilder) => {
+    //await bricksBuilder.create("wallet", "walletBrick_container", {
+      //initialization: {
+        //preferenceId: "<PREFERENCE_ID>",
+      //}
+//});
+  //};
 
-  renderWalletBrick(bricksBuilder);
 </script>
 
     <a

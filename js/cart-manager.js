@@ -142,6 +142,75 @@ class CartManager {
         this.saveCart();
         this.updateCartUI();
     }
+
+    async renderMercadoPagoBrick() {
+    const container = document.getElementById("walletBrick_container");
+    if (!container) return;
+
+    container.innerHTML = '';
+    
+    const checkoutBtn = document.querySelector('.btn-checkout');
+    if (this.cart.length === 0) {
+        // Ocultar contenedor del Brick si no hay items
+        container.style.display = 'none'; 
+        return;
+    }
+    
+    container.style.display = 'block';
+
+    // 1. LLAMADA CRÍTICA AL BACKEND
+    let preferenceId = null;
+    try {
+        // Enviar el carrito al servidor para que genere el ID de Preferencia
+        const response = await fetch('http://localhost:3000/create_preference', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ cart: this.cart }) // Enviamos los detalles de los ítems
+        });
+        
+        const data = await response.json();
+
+        if (response.ok) {
+            preferenceId = data.preferenceId;
+        } else {
+            console.error('Error del servidor al crear preferencia:', data.error);
+            container.innerHTML = `<p style="color: red;">Error al iniciar el pago: ${data.error}</p>`;
+            return;
+        }
+
+    } catch (error) {
+        console.error('Fallo en la conexión al backend:', error);
+        container.innerHTML = `<p style="color: red;">No se pudo conectar al servidor de pagos (¿Está corriendo en el puerto 3000?)</p>`;
+        return;
+    }
+    
+    // 2. RENDERIZAR EL BRICK CON EL ID OBTENIDO
+    try {
+        await bricksBuilder.create("wallet", "walletBrick_container", {
+            initialization: {
+                preferenceId: preferenceId,
+            },
+            // Opcional: Estilos para que se vea bien en tu carrito
+            customization: {
+                texts: {
+                    valueProp: 'smart_option' 
+                },
+                visual: {
+                    buttonBackground: 'solid',
+                    borderRadius: '8px'
+                }
+            },
+            callbacks: {
+                // El pago se abre en una nueva ventana/redirección, este callback 
+                // ya no es tan importante para el Wallet Brick.
+            }
+        });
+    } catch (error) {
+        console.error('Error al renderizar Wallet Brick:', error);
+    }
+}
 }
 
 // Instancia global

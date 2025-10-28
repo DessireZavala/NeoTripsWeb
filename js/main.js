@@ -113,7 +113,7 @@ function initReserveButtons() {
                 }
             } else {
                 console.error('❌ No se pudo encontrar el producto:', packageId);
-                alert('Error: Producto no disponible. Por favor intenta más tarde.');
+                console.log('Error: Producto no disponible. Por favor intenta más tarde.');
             }
         }
     });

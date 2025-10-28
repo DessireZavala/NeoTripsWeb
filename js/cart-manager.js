@@ -1,4 +1,5 @@
-// js/cart-manager.js - VERSIÓN CORREGIDA
+// js/cart-manager.js - VERSIÓN COMPLETA Y CORREGIDA CON MERCADO PAGO BRICK
+
 class CartManager {
     constructor() {
         this.cart = JSON.parse(localStorage.getItem('neotrips_cart')) || [];
@@ -11,19 +12,12 @@ class CartManager {
     }
 
     setupEventListeners() {
-        // Re-asignar event listeners después de actualizar el UI
+        // Solo re-asignar listeners de remoción (el checkout es dinámico)
         this.setupRemoveListeners();
-        
-        // Configurar checkout
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('btn-checkout')) {
-                e.preventDefault();
-                this.proceedToCheckout();
-            }
-        });
     }
 
     addToCart(productId, fechaSalida = null, numPersonas = 1) {
+        // Asumiendo que 'productLoader' está cargado globalmente
         const product = productLoader.getProduct(productId);
         if (!product) {
             console.error('Producto no encontrado:', productId);
@@ -40,10 +34,11 @@ class CartManager {
             title: product.title,
             location: product.location,
             image: product.image,
-            price: parseInt(product.price),
+            // Precio debe ser un número limpio (ya validado en product-loader.js)
+            price: product.price, 
             fechaSalida: fecha,
             numPersonas: personas,
-            subtotal: parseInt(product.price) * personas
+            subtotal: product.price * personas
         };
 
         this.cart.push(cartItem);
@@ -115,32 +110,24 @@ class CartManager {
             <p>Subtotal <span>$${subtotal.toLocaleString()}</span></p>
             <p>Impuestos y tasas <span>$${taxes.toFixed(2)}</span></p>
             <p class="total">Total <span>$${total.toFixed(2)}</span></p>
-            <button class="btn btn-checkout" ${this.cart.length === 0 ? 'disabled' : ''}>
-                Proceder al Pago
-            </button>
+            
+            <div id="walletBrick_container"></div> 
         `;
 
-        // Re-asignar event listener al nuevo botón
-        const checkoutBtn = cartSummary.querySelector('.btn-checkout');
-        if (checkoutBtn && !checkoutBtn.disabled) {
-            checkoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.proceedToCheckout();
-            });
-        }
+        // Llama a la función de renderizado del Brick DESPUÉS de actualizar el HTML
+        this.renderMercadoPagoBrick(); 
     }
 
     updateCartCount() {
         const openCartBtn = document.getElementById('open-cart-btn');
         if (!openCartBtn) return;
 
-        // Remover contador existente
+        // Limpiar el contador existente primero
         const existingCount = openCartBtn.querySelector('.cart-count');
         if (existingCount) {
             existingCount.remove();
         }
 
-        // Agregar nuevo contador si hay items
         if (this.cart.length > 0) {
             const countElement = document.createElement('span');
             countElement.className = 'cart-count';
@@ -159,21 +146,78 @@ class CartManager {
         });
     }
 
-    proceedToCheckout() {
-        if (this.cart.length === 0) {
-            alert('Tu carrito está vacío');
+    // 🛑 MÉTODO PARA RENDERIZAR EL WALLET BRICK DE MERCADO PAGO
+    async renderMercadoPagoBrick() {
+        // Asegura que el SDK está disponible globalmente
+        if (typeof mp === 'undefined' || typeof bricksBuilder === 'undefined') {
+            console.error("SDK de Mercado Pago no inicializado (mp y bricksBuilder)");
             return;
         }
 
-        // Mostrar modal de políticas de privacidad
-        const privacyModal = document.getElementById('privacy-policy-modal');
-        if (privacyModal) {
-            privacyModal.style.display = 'block';
+        const container = document.getElementById("walletBrick_container");
+        if (!container) return;
+
+        container.innerHTML = ''; // Limpiar el contenedor antes de renderizar
+        
+        if (this.cart.length === 0) {
+            // Mostrar un botón deshabilitado si el carrito está vacío
+            container.innerHTML = `<button class="btn btn-checkout" disabled>Proceder al Pago</button>`;
+            return;
+        }
+        
+        // 1. LLAMADA CRÍTICA AL BACKEND PARA GENERAR PREFERENCIA
+        let preferenceId = null;
+        try {
+            // Envía los detalles de los ítems al servidor (puerto 3000)
+            const response = await fetch('http://localhost:3000/create_preference', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ cart: this.cart })
+            });
+            
+            const data = await response.json();
+
+            if (response.ok) {
+                preferenceId = data.preferenceId;
+            } else {
+                console.error('Error del servidor al crear preferencia:', data.error);
+                // Muestra el error de Mercado Pago (ej: "Producto no disponible")
+                container.innerHTML = `<p style="color: red; font-size: 0.9rem; text-align: center;">❌ Error: ${data.error}</p>`;
+                return;
+            }
+
+        } catch (error) {
+            console.error('Fallo en la conexión al backend:', error);
+            // Muestra un error si Node.js no está corriendo
+            container.innerHTML = `<p style="color: red; font-size: 0.9rem; text-align: center;">🔌 No se pudo conectar al servidor de pagos (¿Está corriendo en el puerto 3000?).</p>`;
+            return;
+        }
+        
+        // 2. RENDERIZAR EL BRICK CON EL ID OBTENIDO
+        try {
+            await bricksBuilder.create("wallet", "walletBrick_container", {
+                initialization: {
+                    preferenceId: preferenceId,
+                },
+                customization: {
+                    texts: {
+                        valueProp: 'smart_option' 
+                    },
+                    visual: {
+                        buttonBackground: 'solid',
+                        borderRadius: '8px'
+                    }
+                }
+            });
+        } catch (error) {
+            console.error('Error al renderizar Wallet Brick:', error);
         }
     }
 
     showConfirmationMessage(message) {
-        // Crear o actualizar el mensaje de confirmación
+        // ... (código para mostrar mensajes de confirmación) ...
         let confirmationMessage = document.getElementById("reservation-confirmation");
         
         if (!confirmationMessage) {
@@ -186,7 +230,6 @@ class CartManager {
             `;
             document.body.appendChild(confirmationMessage);
             
-            // Agregar event listener para cerrar
             confirmationMessage.querySelector('.close-confirmation').addEventListener('click', () => {
                 confirmationMessage.style.display = 'none';
             });
@@ -207,79 +250,9 @@ class CartManager {
         this.showConfirmationMessage('¡Carrito vaciado!');
     }
 
-    // Método para obtener el carrito actual
     getCart() {
         return this.cart;
     }
-
-    async renderMercadoPagoBrick() {
-    const container = document.getElementById("walletBrick_container");
-    if (!container) return;
-
-    container.innerHTML = '';
-    
-    const checkoutBtn = document.querySelector('.btn-checkout');
-    if (this.cart.length === 0) {
-        // Ocultar contenedor del Brick si no hay items
-        container.style.display = 'none'; 
-        return;
-    }
-    
-    container.style.display = 'block';
-
-    // 1. LLAMADA CRÍTICA AL BACKEND
-    let preferenceId = null;
-    try {
-        // Enviar el carrito al servidor para que genere el ID de Preferencia
-        const response = await fetch('http://localhost:3000/create_preference', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ cart: this.cart }) // Enviamos los detalles de los ítems
-        });
-        
-        const data = await response.json();
-
-        if (response.ok) {
-            preferenceId = data.preferenceId;
-        } else {
-            console.error('Error del servidor al crear preferencia:', data.error);
-            container.innerHTML = `<p style="color: red;">Error al iniciar el pago: ${data.error}</p>`;
-            return;
-        }
-
-    } catch (error) {
-        console.error('Fallo en la conexión al backend:', error);
-        container.innerHTML = `<p style="color: red;">No se pudo conectar al servidor de pagos (¿Está corriendo en el puerto 3000?)</p>`;
-        return;
-    }
-    
-    // 2. RENDERIZAR EL BRICK CON EL ID OBTENIDO
-    try {
-        await bricksBuilder.create("wallet", "walletBrick_container", {
-            initialization: {
-                preferenceId: preferenceId,
-            },
-            // Opcional: Estilos para que se vea bien en tu carrito
-            customization: {
-                texts: {
-                    valueProp: 'smart_option' 
-                },
-                visual: {
-                    buttonBackground: 'solid',
-                    borderRadius: '8px'
-                }
-            },
-            callbacks: {
-                // El pago se abre en una nueva ventana/redirección, este callback 
-                // ya no es tan importante para el Wallet Brick.
-            }
-        });
-    } catch (error) {
-        console.error('Error al renderizar Wallet Brick:', error);
-    }
-}
 }
 
 // Instancia global del carrito

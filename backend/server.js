@@ -8,7 +8,7 @@ const PORT = 3000;
 // ⚠️ CORRECCIÓN: Ahora creamos una INSTANCIA y la usamos en lugar de mercadopago.configure()
 
 const client = new MercadoPagoConfig({ 
-    accessToken: 'APP_USR-8746859223329436-102714-73fe762918f8b628556d4a768f1355eb-2950256985', // 👈 Usa tu Access Token de prueba aquí
+    accessToken: 'TEST-4802982661360132-102713-c7dfa915378914096285a9b184fc3c63-2950578853', // 👈 Usa tu Access Token de prueba aquí
     options: { timeout: 5000 } 
 });
 
@@ -45,7 +45,7 @@ app.post('/create_preference', async (req, res) => {
                 "failure": "http://127.0.0.1:5500/paquetes.html?payment=failure",
                 "pending": "http://127.0.0.1:5500/paquetes.html?payment=pending"
             },
-            auto_return: "approved",
+            
             shipments: {
                 mode: "not_specified" 
             }
